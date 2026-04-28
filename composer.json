@@ -1,0 +1,50 @@
+{
+  "name": "enzan-koubou/laravel-rocket-generator",
+  "description": "Code Generator For Laravel Rocket",
+  "type": "library",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../laravel-rocket-foundation",
+      "options": {
+        "symlink": false
+      }
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "symfony/yaml": "^7.0",
+    "takaaki-mizuno/php-code-manipulator": "0.1.0",
+    "takaaki-mizuno/swagger-parser": "0.1",
+    "doctrine/dbal": "^4.4.3",
+    "takaaki-mizuno/mwb-parser": "0.0.6",
+    "nikic/php-parser": "^5.7.0",
+    "ext-json": "*",
+    "ext-pdo": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^13.1.7",
+    "icanboogie/inflector": "^4.0.0",
+    "laravel/framework": "^13.6.0",
+    "friendsofphp/php-cs-fixer": "^3.95.1",
+    "fakerphp/faker": "^1.24.1",
+    "laravel/laravel": "^13.3.0",
+    "enzan-koubou/laravel-rocket-foundation": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "LaravelRocket\\Generator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
