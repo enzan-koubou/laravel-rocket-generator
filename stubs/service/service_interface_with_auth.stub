@@ -1,0 +1,8 @@
+<?php
+namespace App\Services;
+
+use EnzanRocket\Foundation\Services\AuthenticatableServiceInterface;
+
+interface %%CLASS%% extends AuthenticatableServiceInterface
+{
+}

@@ -1,5 +1,5 @@
 <?php
-namespace LaravelRocket\Generator\Tests;
+namespace EnzanRocket\Generator\Tests;
 
 use Illuminate\Events\Dispatcher;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -12,7 +12,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     /**
      * Setup DB before each test.
      */
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
         $this->app->boot();
@@ -29,7 +29,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
         $this->setUpHttpKernel($app);
         $app->register(\Illuminate\Database\DatabaseServiceProvider::class);
-        $app->register(\LaravelRocket\Generator\Providers\ServiceProvider::class);
+        $app->register(\EnzanRocket\Generator\Providers\ServiceProvider::class);
 
         return $app;
     }

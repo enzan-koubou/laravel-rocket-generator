@@ -1,50 +1,38 @@
 {
-  "name": "enzan-koubou/laravel-rocket-generator",
+  "name": "enzan-rocket/generator",
   "description": "Code Generator For Laravel Rocket",
   "type": "library",
   "license": "MIT",
-  "repositories": [
+  "authors": [
     {
-      "type": "path",
-      "url": "../laravel-rocket-foundation",
-      "options": {
-        "symlink": false
-      }
+      "name": "Takaaki Mizuno",
+      "email": "takaaki.mizuno@gmail.com"
     }
   ],
   "require": {
-    "php": "^8.3",
+    "php": "^8.4",
     "symfony/yaml": "^7.0",
-    "takaaki-mizuno/php-code-manipulator": "0.1.0",
-    "takaaki-mizuno/swagger-parser": "0.1",
-    "doctrine/dbal": "^4.4.3",
-    "takaaki-mizuno/mwb-parser": "0.0.6",
-    "nikic/php-parser": "^5.7.0",
-    "ext-json": "*",
-    "ext-pdo": "*"
+    "takaaki-mizuno/php-code-manipulator": "0.*",
+    "takaaki-mizuno/swagger-parser": "0.*",
+    "doctrine/dbal": "^3.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^13.1.7",
-    "icanboogie/inflector": "^4.0.0",
-    "laravel/framework": "^13.6.0",
-    "friendsofphp/php-cs-fixer": "^3.95.1",
-    "fakerphp/faker": "^1.24.1",
-    "laravel/laravel": "^13.3.0",
-    "enzan-koubou/laravel-rocket-foundation": "dev-main"
+    "phpunit/phpunit": "^11.0",
+    "icanboogie/inflector": "^2.0",
+    "laravel/framework": "^13.0",
+    "enzan-rocket/foundation": "*",
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "fakerphp/faker": "^1.9",
+    "nikic/PHP-Parser": "^5.0"
   },
   "autoload": {
     "psr-4": {
-      "LaravelRocket\\Generator\\": "src/"
+      "EnzanRocket\\Generator\\": "src/"
     }
   },
   "autoload-dev": {
     "classmap": [
       "tests"
     ]
-  },
-  "config": {
-    "allow-plugins": {
-      "php-http/discovery": true
-    }
   }
 }

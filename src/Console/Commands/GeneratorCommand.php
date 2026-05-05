@@ -1,13 +1,12 @@
 <?php
-
-namespace LaravelRocket\Generator\Console\Commands;
+namespace EnzanRocket\Generator\Console\Commands;
 
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Illuminate\View\Factory as ViewFactory;
-use LaravelRocket\Generator\Generators\Generator;
+use EnzanRocket\Generator\Generators\Generator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
