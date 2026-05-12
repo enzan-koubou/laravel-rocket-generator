@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\APIs\Admin;
+namespace EnzanRocket\Generator\Generators\APIs\Admin;
 
-use LaravelRocket\Generator\Generators\TableBaseGenerator;
+use EnzanRocket\Generator\Generators\TableBaseGenerator;
 
 class BaseAdminAPIGenerator extends TableBaseGenerator
 {

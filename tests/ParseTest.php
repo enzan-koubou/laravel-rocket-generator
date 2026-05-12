@@ -1,7 +1,6 @@
 <?php
-namespace LaravelRocket\Generator\Tests;
+namespace EnzanRocket\Generator\Tests;
 
-use PhpParser\Lexer;
 use PhpParser\ParserFactory;
 
 class ParseTest extends TestCase
@@ -11,13 +10,7 @@ class ParseTest extends TestCase
 
     public function testGetInstance()
     {
-        $lexer = new Lexer([
-            'usedAttributes' => [
-                'comments', 'startLine', 'endLine',
-            ],
-        ]);
-
-        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, $lexer);
+        $parser = (new ParserFactory())->createForHostVersion();
 
         $statements = $parser->parse(file_get_contents(__DIR__.'/data/test.php'));
         $this->travarse($statements);

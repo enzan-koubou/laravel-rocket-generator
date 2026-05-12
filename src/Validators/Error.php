@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators;
+namespace EnzanRocket\Generator\Validators;
 
 class Error
 {

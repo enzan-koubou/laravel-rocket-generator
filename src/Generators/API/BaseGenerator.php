@@ -3,6 +3,7 @@ namespace EnzanRocket\Generator\Generators\API;
 
 use EnzanRocket\Generator\Generators\Generator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class BaseGenerator extends Generator
 {
@@ -30,7 +31,7 @@ class BaseGenerator extends Generator
         });
 
         $this->namespace = implode('\\', array_map(function ($path) {
-            return studly_case($path);
+            return Str::studly($path);
         }, $names));
     }
 }

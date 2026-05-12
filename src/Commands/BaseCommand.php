@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Config\Repository;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Factory;
-use LaravelRocket\Generator\Objects\Definitions;
+use EnzanRocket\Generator\Objects\Definitions;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
@@ -23,7 +23,7 @@ class BaseCommand extends Command
     /** @var \Illuminate\View\Factory */
     protected $view;
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions */
+    /** @var \EnzanRocket\Generator\Objects\Definitions */
     protected $json;
 
     /**
@@ -159,7 +159,7 @@ class BaseCommand extends Command
 
     protected function command($command)
     {
-        $process = new Process($command);
+        $process = Process::fromShellCommandline($command);
         $process->run();
 
         return $process->getOutput();

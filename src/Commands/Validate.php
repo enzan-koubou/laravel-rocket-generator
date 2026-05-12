@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
-use LaravelRocket\Generator\Validators\Error;
-use LaravelRocket\Generator\Validators\Services\ServiceValidator;
+use EnzanRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Validators\Services\ServiceValidator;
 
 class Validate extends BaseCommand
 {
@@ -13,7 +13,7 @@ class Validate extends BaseCommand
 
     protected $description = 'Validate Full Code';
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions */
+    /** @var \EnzanRocket\Generator\Objects\Definitions */
     protected $json;
 
     /**
@@ -38,7 +38,7 @@ class Validate extends BaseCommand
         $validator = new ServiceValidator($this->config, $this->files, $this->view);
 
         /** @var bool $success */
-        /** @var \LaravelRocket\Generator\Validators\Error[] $errors */
+        /** @var \EnzanRocket\Generator\Validators\Error[] $errors */
         list($success, $errors) = $validator->validate($this->json);
 
         $this->output('Service Validation Result');

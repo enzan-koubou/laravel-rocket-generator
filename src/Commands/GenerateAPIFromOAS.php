@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
-use LaravelRocket\Generator\FileUpdaters\APIs\OpenAPI\RouterFileUpdater;
-use LaravelRocket\Generator\Services\DatabaseService;
-use LaravelRocket\Generator\Services\OASService;
-use LaravelRocket\Generator\Validators\APIs\APIValidator;
-use LaravelRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\FileUpdaters\APIs\OpenAPI\RouterFileUpdater;
+use EnzanRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\Services\OASService;
+use EnzanRocket\Generator\Validators\APIs\APIValidator;
+use EnzanRocket\Generator\Validators\Error;
 
 class GenerateAPIFromOAS extends MWBGenerator
 {
@@ -16,7 +16,7 @@ class GenerateAPIFromOAS extends MWBGenerator
 
     protected $description = 'Create API from OAS file';
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec */
     protected $spec;
 
     /** @var DatabaseService $databaseService */
@@ -66,7 +66,7 @@ class GenerateAPIFromOAS extends MWBGenerator
     }
 
     /**
-     * @return bool|\LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec
+     * @return bool|\EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec
      */
     protected function getAPISpecFromOASFile()
     {
@@ -101,7 +101,7 @@ class GenerateAPIFromOAS extends MWBGenerator
         $validator = new APIValidator($this->config, $this->files, $this->view);
 
         /** @var bool $success */
-        /** @var \LaravelRocket\Generator\Validators\Error[] $errors */
+        /** @var \EnzanRocket\Generator\Validators\Error[] $errors */
         list($success, $errors) = $validator->validate($this->spec, $this->json);
 
         $this->output('API Validation Result');
@@ -136,9 +136,9 @@ class GenerateAPIFromOAS extends MWBGenerator
 
     protected function generateFromDefinitions()
     {
-        /** @var \LaravelRocket\Generator\Generators\APIBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\APIBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\APIs\OpenAPI\ResponseGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
+            new \EnzanRocket\Generator\Generators\APIs\OpenAPI\ResponseGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
         ];
 
         foreach ($this->spec->getDefinitions() as $definition) {
@@ -151,10 +151,10 @@ class GenerateAPIFromOAS extends MWBGenerator
 
     protected function generateControllers()
     {
-        /** @var \LaravelRocket\Generator\Generators\APIBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\APIBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\APIs\OpenAPI\ControllerGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
-            new \LaravelRocket\Generator\Generators\APIs\OpenAPI\UnitTestGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
+            new \EnzanRocket\Generator\Generators\APIs\OpenAPI\ControllerGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
+            new \EnzanRocket\Generator\Generators\APIs\OpenAPI\UnitTestGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
         ];
 
         foreach ($this->spec->getControllers() as $controller) {
@@ -168,9 +168,9 @@ class GenerateAPIFromOAS extends MWBGenerator
 
     protected function generateRequests()
     {
-        /** @var \LaravelRocket\Generator\Generators\APIBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\APIBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\APIs\OpenAPI\RequestGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
+            new \EnzanRocket\Generator\Generators\APIs\OpenAPI\RequestGenerator($this->config, $this->files, $this->view, $this->json, $this->rebuild),
         ];
 
         foreach ($this->spec->getControllers() as $controller) {

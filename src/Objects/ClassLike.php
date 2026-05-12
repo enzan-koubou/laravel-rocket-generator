@@ -1,10 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects;
+namespace EnzanRocket\Generator\Objects;
 
 use Illuminate\Support\Str;
 use PhpParser\Error;
-use PhpParser\Lexer;
 use PhpParser\Node\Stmt\ClassConst;
 use PhpParser\Node\Stmt\ClassLike as StmtClassLike;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -116,12 +115,7 @@ class ClassLike
 
     protected function parse()
     {
-        $lexer  = new Lexer([
-            'usedAttributes' => [
-                'comments', 'startLine', 'endLine',
-            ],
-        ]);
-        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, $lexer);
+        $parser = (new ParserFactory())->createForHostVersion();
 
         try {
             $this->statements = $parser->parse(file_get_contents($this->path));

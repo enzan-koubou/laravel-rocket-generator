@@ -1,13 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters;
+namespace EnzanRocket\Generator\FileUpdaters;
 
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Factory;
-use LaravelRocket\Generator\Services\FileService;
+use EnzanRocket\Generator\Services\FileService;
 use PhpParser\Error;
-use PhpParser\Lexer;
 use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\ParserFactory;
@@ -23,7 +22,7 @@ class BaseFileUpdater
     /** @var \Illuminate\View\Factory */
     protected $view;
 
-    /** @var \LaravelRocket\Generator\Services\FileService */
+    /** @var \EnzanRocket\Generator\Services\FileService */
     protected $fileService;
 
     /** @var bool */
@@ -153,13 +152,7 @@ class BaseFileUpdater
      */
     protected function parseFile(string $filePath)
     {
-        $lexer = new Lexer([
-            'usedAttributes' => [
-                'comments', 'startLine', 'endLine',
-            ],
-        ]);
-
-        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, $lexer);
+        $parser = (new ParserFactory())->createForHostVersion();
 
         try {
             $statements = $parser->parse(file_get_contents($filePath));

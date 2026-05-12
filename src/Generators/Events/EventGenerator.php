@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Events;
+namespace EnzanRocket\Generator\Generators\Events;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Generators\NameBaseGenerator;
+use EnzanRocket\Generator\Generators\NameBaseGenerator;
 
 class EventGenerator extends NameBaseGenerator
 {

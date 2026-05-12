@@ -2,7 +2,7 @@
 namespace EnzanRocket\Generator\Generators;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
-use function ICanBoogie\pluralize;
+use Illuminate\Support\Str;
 
 class CreateMigrationGenerator extends Generator
 {
@@ -30,12 +30,12 @@ class CreateMigrationGenerator extends Generator
 
     protected function getTableName($name)
     {
-        return pluralize(snake_case($name));
+        return \ICanBoogie\StaticInflector::pluralize(Str::snake($name));
     }
 
     protected function getClassName($name)
     {
-        return 'Create'.ucfirst(camel_case($name)).'Table';
+        return 'Create'.ucfirst(Str::camel($name)).'Table';
     }
 
     protected function getPath($name)

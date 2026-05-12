@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Helpers;
+namespace EnzanRocket\Generator\Helpers;
 
 use Illuminate\Support\Str;
 

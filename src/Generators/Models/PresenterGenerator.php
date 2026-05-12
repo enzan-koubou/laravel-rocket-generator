@@ -1,10 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Models;
+namespace EnzanRocket\Generator\Generators\Models;
 
 use Illuminate\Support\Str;
 
-use function ICanBoogie\pluralize;
 
 class PresenterGenerator extends ModelBaseGenerator
 {
@@ -35,7 +34,7 @@ class PresenterGenerator extends ModelBaseGenerator
         $variables                         = $this->getColumnInfo();
         $variables['modelName']            = $modelName;
         $variables['variableName']         = Str::camel($modelName);
-        $variables['viewName']             = Str::kebab(pluralize($modelName));
+        $variables['viewName']             = Str::kebab(\ICanBoogie\StaticInflector::pluralize($modelName));
         $variables['tableName']            = $this->table->getName();
         $variables['relations']            = $this->getRelations();
         $variables['representativeColumn'] = $this->detectRepresentativeColumn();

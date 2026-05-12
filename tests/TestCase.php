@@ -1,55 +1,29 @@
 <?php
 namespace EnzanRocket\Generator\Tests;
 
-use Illuminate\Events\Dispatcher;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Routing\Router;
+use EnzanRocket\Generator\Providers\ServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
-class TestCase extends \Illuminate\Foundation\Testing\TestCase
+class TestCase extends BaseTestCase
 {
-    use WithoutMiddleware;
-
     /**
-     * Setup DB before each test.
+     * Setup before each test.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->app->boot();
     }
 
     /**
-     * Boots the application.
+     * Get package providers.
      *
-     * @return \Illuminate\Foundation\Application
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array<int, class-string>
      */
-    public function createApplication()
+    protected function getPackageProviders($app): array
     {
-        /** @var $app \Illuminate\Foundation\Application */
-        $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
-        $this->setUpHttpKernel($app);
-        $app->register(\Illuminate\Database\DatabaseServiceProvider::class);
-        $app->register(\EnzanRocket\Generator\Providers\ServiceProvider::class);
-
-        return $app;
-    }
-
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     */
-    private function setUpHttpKernel($app)
-    {
-        $app->instance('request', (new \Illuminate\Http\Request())->instance());
-        $app->make('Illuminate\Foundation\Http\Kernel', [$app, $this->getRouter()])->bootstrap();
-    }
-
-    /**
-     * @return Router
-     */
-    protected function getRouter()
-    {
-        $router = new Router(new Dispatcher());
-
-        return $router;
+        return [
+            ServiceProvider::class,
+        ];
     }
 }

@@ -1,11 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
-use LaravelRocket\Generator\Objects\Table;
+use EnzanRocket\Generator\Objects\Table;
 
-use function ICanBoogie\pluralize;
-use function ICanBoogie\singularize;
 
 class OpenAPISpec
 {
@@ -14,16 +12,16 @@ class OpenAPISpec
      */
     protected $tables;
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions|null */
+    /** @var \EnzanRocket\Generator\Objects\Definitions|null */
     protected $json;
 
     /** @var \TakaakiMizuno\SwaggerParser\Objects\V20\Document */
     protected $document;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Definition[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Definition[] */
     protected $definitions;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Controller[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Controller[] */
     protected $controllers;
 
     /** @var string */
@@ -53,7 +51,7 @@ class OpenAPISpec
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Definition[]
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Definition[]
      */
     public function getDefinitions()
     {
@@ -79,7 +77,7 @@ class OpenAPISpec
     /**
      * @param string $name
      *
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Definition|null
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Definition|null
      */
     public function findDefinition(string $name)
     {
@@ -98,11 +96,11 @@ class OpenAPISpec
      * @param string $name
      * @param string $prefix
      *
-     * @return \LaravelRocket\Generator\Objects\Table|null
+     * @return \EnzanRocket\Generator\Objects\Table|null
      */
     public function findTable(string $name, string $prefix = '')
     {
-        $name = pluralize($name);
+        $name = \ICanBoogie\StaticInflector::pluralize($name);
         $name = str_replace('-', '_', $name);
 
         foreach ($this->tables as $table) {
@@ -112,7 +110,7 @@ class OpenAPISpec
         }
 
         if (!empty($prefix)) {
-            $name = singularize($prefix).'_'.$name;
+            $name = \ICanBoogie\StaticInflector::singularize($prefix).'_'.$name;
             foreach ($this->tables as $table) {
                 if ($table->getName() === $name) {
                     return new Table($table, $this->tables, $this->json);
@@ -124,7 +122,7 @@ class OpenAPISpec
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Controller[]
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Controller[]
      */
     public function getControllers()
     {
@@ -132,7 +130,7 @@ class OpenAPISpec
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Action[]
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Action[]
      */
     public function getActions()
     {
@@ -149,7 +147,7 @@ class OpenAPISpec
     /**
      * @param string $key
      *
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Action|null
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Action|null
      */
     public function findAction($key)
     {
@@ -161,7 +159,7 @@ class OpenAPISpec
     /**
      * @param string $name
      *
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Controller|null
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Controller|null
      */
     public function findController(string $name)
     {
@@ -210,7 +208,7 @@ class OpenAPISpec
     }
 
     /**
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\Action $action
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\Action $action
      * @param array                                           $controllers
      *
      * @return bool

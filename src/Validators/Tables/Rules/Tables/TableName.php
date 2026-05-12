@@ -1,13 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\Tables\Rules\Tables;
+namespace EnzanRocket\Generator\Validators\Tables\Rules\Tables;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Validators\BaseRule;
-use LaravelRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Validators\BaseRule;
+use EnzanRocket\Generator\Validators\Error;
 
-use function ICanBoogie\pluralize;
 
 class TableName extends BaseRule
 {
@@ -34,7 +33,7 @@ class TableName extends BaseRule
             );
         }
 
-        $idealName = pluralize(Str::snake($name));
+        $idealName = \ICanBoogie\StaticInflector::pluralize(Str::snake($name));
 
         if (Str::snake($name) != $name) {
             $errors[] = new Error(
@@ -45,7 +44,7 @@ class TableName extends BaseRule
             );
         }
 
-        if (pluralize($name) != $name) {
+        if (\ICanBoogie\StaticInflector::pluralize($name) != $name) {
             $errors[] = new Error(
                 'Table name must be plural form.',
                 Error::LEVEL_ERROR,

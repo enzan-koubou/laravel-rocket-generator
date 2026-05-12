@@ -1,7 +1,7 @@
 <?php
-namespace LaravelRocket\Generator\Tests;
+namespace EnzanRocket\Generator\Tests;
 
-use LaravelRocket\Generator\Generators\TableBaseGenerator;
+use EnzanRocket\Generator\Generators\TableBaseGenerator;
 use TakaakiMizuno\MWBParser\Parser;
 
 class TableBaseGeneratorTest extends TestCase

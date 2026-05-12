@@ -1,11 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
 use Illuminate\Support\Str;
 
-use function ICanBoogie\pluralize;
-use function ICanBoogie\singularize;
 
 class PathElement
 {
@@ -104,7 +102,7 @@ class PathElement
 
     protected function detectPlural()
     {
-        if (pluralize($this->element) === $this->element) {
+        if (\ICanBoogie\StaticInflector::pluralize($this->element) === $this->element) {
             $this->isPlural = true;
         }
         if ($this->element === 'me') {
@@ -117,6 +115,6 @@ class PathElement
      */
     public function getModelName(): string
     {
-        return ucfirst(Str::camel(singularize($this->element)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($this->element)));
     }
 }

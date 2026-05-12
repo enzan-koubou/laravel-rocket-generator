@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Models;
+namespace EnzanRocket\Generator\Generators\Models;
 
 class RelationLanguageFileGenerator extends ModelBaseGenerator
 {

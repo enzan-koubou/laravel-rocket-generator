@@ -2,7 +2,7 @@
 namespace EnzanRocket\Generator\Generators\API;
 
 use TakaakiMizuno\PhpCodeManipulator\Parser as PhpParser;
-use function ICanBoogie\singularize;
+use Illuminate\Support\Str;
 
 class RouteGenerator extends BaseGenerator
 {
@@ -135,25 +135,25 @@ class RouteGenerator extends BaseGenerator
         $action     = '';
         $isResource = false;
         if (count($fragments) === 1 && in_array($method, ['get', 'post'])) {
-            $name       = studly_case(singularize($fragments[0])).'Controller';
+            $name       = Str::studly(\ICanBoogie\StaticInflector::singularize($fragments[0])).'Controller';
             $action     = $method === 'get' ? 'index' : 'store';
             $isResource = true;
         } elseif (count($fragments) === 2 && $this->isValue($fragments[1]) && in_array(
                 $method,
                 ['get', 'put', 'delete']
             )) {
-            $name       = studly_case(singularize($fragments[0])).'Controller';
-            $action     = $method === 'get' ? 'show' : 'put' ? 'update' : 'destroy';
+            $name       = Str::studly(\ICanBoogie\StaticInflector::singularize($fragments[0])).'Controller';
+            $action     = $method === 'get' ? 'show' : ($method === 'put' ? 'update' : 'destroy');
             $isResource = true;
         } elseif (count($fragments) === 1) {
-            $name   = studly_case($fragments[0]).'Controller';
+            $name   = Str::studly($fragments[0]).'Controller';
             $action = $method;
         } elseif ($this->isValue($fragments[count($fragments) - 1])) {
-            $name       = studly_case(singularize($fragments[count($fragments) - 2])).'Controller';
-            $action     = $method === 'get' ? 'show' : 'put' ? 'update' : 'destroy';
+            $name       = Str::studly(\ICanBoogie\StaticInflector::singularize($fragments[count($fragments) - 2])).'Controller';
+            $action     = $method === 'get' ? 'show' : ($method === 'put' ? 'update' : 'destroy');
             $isResource = true;
         } else {
-            $name   = studly_case(singularize($fragments[count($fragments) - 2])).'Controller';
+            $name   = Str::studly(\ICanBoogie\StaticInflector::singularize($fragments[count($fragments) - 2])).'Controller';
             $action = $fragments[count($fragments) - 1];
         }
 

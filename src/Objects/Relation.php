@@ -1,12 +1,11 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects;
+namespace EnzanRocket\Generator\Objects;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Helpers\StringHelper;
+use EnzanRocket\Generator\Helpers\StringHelper;
 
-use function ICanBoogie\singularize;
 
 class Relation
 {
@@ -41,7 +40,7 @@ class Relation
     protected $editFieldOptions = [];
 
     /**
-     * @var \LaravelRocket\Generator\Objects\Definitions|null
+     * @var \EnzanRocket\Generator\Objects\Definitions|null
      */
     protected $json = null;
 
@@ -93,7 +92,7 @@ class Relation
 
                 return;
             case self::TYPE_HAS_ONE:
-                $this->name = Str::camel(singularize($this->referenceTableName));
+                $this->name = Str::camel(\ICanBoogie\StaticInflector::singularize($this->referenceTableName));
 
                 return;
             case self::TYPE_BELONGS_TO_MANY:
@@ -260,7 +259,7 @@ class Relation
      */
     public function getReferenceModel(): string
     {
-        return ucfirst(Str::camel(singularize($this->referenceTableName)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($this->referenceTableName)));
     }
 
     /**
@@ -276,7 +275,7 @@ class Relation
      */
     public function getIntermediateTableModel(): string
     {
-        return ucfirst(Str::camel(singularize($this->intermediateTableName)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($this->intermediateTableName)));
     }
 
     /**

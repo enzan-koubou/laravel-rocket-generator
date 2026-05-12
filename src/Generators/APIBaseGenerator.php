@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators;
+namespace EnzanRocket\Generator\Generators;
 
 class APIBaseGenerator extends BaseGenerator
 {
@@ -18,7 +18,7 @@ class APIBaseGenerator extends BaseGenerator
     protected $object;
 
     /**
-     * @var \LaravelRocket\Generator\Objects\Table[]
+     * @var \EnzanRocket\Generator\Objects\Table[]
      */
     protected $tables;
 
@@ -28,21 +28,21 @@ class APIBaseGenerator extends BaseGenerator
     protected $osa;
 
     /**
-     * @var \LaravelRocket\Generator\Objects\Definitions
+     * @var \EnzanRocket\Generator\Objects\Definitions
      */
     protected $json;
 
-    /** @var \LaravelRocket\Generator\Services\DatabaseService $database */
+    /** @var \EnzanRocket\Generator\Services\DatabaseService $database */
     protected $databaseService;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec */
     protected $spec;
 
     /**
      * @param string                                               $name
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
-     * @param \LaravelRocket\Generator\Services\DatabaseService    $databaseService
-     * @param \LaravelRocket\Generator\Objects\Definitions         $json
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Services\DatabaseService    $databaseService
+     * @param \EnzanRocket\Generator\Objects\Definitions         $json
      * @param \TakaakiMizuno\MWBParser\Elements\Table[]            $tables
      *
      * @return bool
@@ -77,7 +77,7 @@ class APIBaseGenerator extends BaseGenerator
 
     /**
      * @param string                                               $name
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
      */
     public function setTarget($name, $spec)
     {

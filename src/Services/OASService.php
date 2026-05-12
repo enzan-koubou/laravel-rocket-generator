@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelRocket\Generator\Services;
+namespace EnzanRocket\Generator\Services;
 
-use LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec;
+use EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec;
 use TakaakiMizuno\SwaggerParser\Parser as SwaggerParser;
 
 class OASService
@@ -10,7 +10,7 @@ class OASService
     /** @var \TakaakiMizuno\SwaggerParser\Objects\V20\Document */
     protected $document;
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions|null */
+    /** @var \EnzanRocket\Generator\Objects\Definitions|null */
     protected $json;
 
     /** @var \TakaakiMizuno\MWBParser\Elements\Table[] */
@@ -22,7 +22,7 @@ class OASService
     /**
      * @param string                                       $path
      * @param \TakaakiMizuno\MWBParser\Elements\Table[]    $tables
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return OpenAPISpec
      */

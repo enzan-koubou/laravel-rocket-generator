@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators;
+namespace EnzanRocket\Generator\Validators;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Services\FileService;
+use EnzanRocket\Generator\Services\FileService;
 
 class BaseValidator
 {
@@ -16,7 +16,7 @@ class BaseValidator
     /** @var \Illuminate\View\Factory */
     protected $view;
 
-    /** @var \LaravelRocket\Generator\Services\FileService */
+    /** @var \EnzanRocket\Generator\Services\FileService */
     protected $fileService;
 
     /**

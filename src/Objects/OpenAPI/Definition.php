@@ -1,12 +1,11 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Objects\Table;
+use EnzanRocket\Generator\Objects\Table;
 
-use function ICanBoogie\pluralize;
 
 class Definition
 {
@@ -28,13 +27,13 @@ class Definition
     /** @var array $json */
     protected $json;
 
-    /** @var \LaravelRocket\Generator\Objects\Table[] $tables */
+    /** @var \EnzanRocket\Generator\Objects\Table[] $tables */
     protected $tables;
 
     /** @var string $type */
     protected $type;
 
-    /** @var \LaravelRocket\Generator\Objects\Table $tablev */
+    /** @var \EnzanRocket\Generator\Objects\Table $tablev */
     protected $table;
 
     /** @var array */
@@ -46,7 +45,7 @@ class Definition
     /** @var string */
     protected $listItemName;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Definition */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Definition */
     protected $listItem;
 
     /**
@@ -54,9 +53,9 @@ class Definition
      *
      * @param string                                            $name
      * @param \TakaakiMizuno\SwaggerParser\Objects\Base         $object
-     * @param \LaravelRocket\Generator\Objects\Definitions      $json
+     * @param \EnzanRocket\Generator\Objects\Definitions      $json
      * @param \TakaakiMizuno\SwaggerParser\Objects\V20\Document $osa
-     * @param \LaravelRocket\Generator\Objects\Table[]          $tables
+     * @param \EnzanRocket\Generator\Objects\Table[]          $tables
      */
     public function __construct(string $name, $object, $json, $osa, array $tables)
     {
@@ -114,7 +113,7 @@ class Definition
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Definition|null
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Definition|null
      */
     public function getListItem()
     {
@@ -126,7 +125,7 @@ class Definition
     }
 
     /**
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
      */
     public function setListResponseItem($spec)
     {
@@ -170,7 +169,7 @@ class Definition
             }
         }
         if ($this->type === self::TYPE_OBJECT) {
-            $tableCandidateName = pluralize(Str::snake($this->name));
+            $tableCandidateName = \ICanBoogie\StaticInflector::pluralize(Str::snake($this->name));
             if (array_key_exists($this->name, self::TABLE_ALIASES)) {
                 $tableCandidateName = self::TABLE_ALIASES[$this->name];
             }
@@ -273,7 +272,7 @@ class Definition
                 continue;
             }
 
-            $relation = $this->table->getRelation(Str::camel(pluralize($property['definition'])));
+            $relation = $this->table->getRelation(Str::camel(\ICanBoogie\StaticInflector::pluralize($property['definition'])));
             if (!empty($relation)) {
                 $this->properties[$index]['relation'] = $relation;
                 continue;

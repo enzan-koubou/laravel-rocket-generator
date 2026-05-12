@@ -1,34 +1,34 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\Tables;
+namespace EnzanRocket\Generator\Validators\Tables;
 
-use LaravelRocket\Generator\Validators\BaseValidator;
-use LaravelRocket\Generator\Validators\Tables\Rules\Columns\AvoidDateTime;
-use LaravelRocket\Generator\Validators\Tables\Rules\Columns\AvoidLongVarChar;
-use LaravelRocket\Generator\Validators\Tables\Rules\Columns\ColumnName;
-use LaravelRocket\Generator\Validators\Tables\Rules\Columns\GenderWithVarChar;
-use LaravelRocket\Generator\Validators\Tables\Rules\Columns\OptionDefined;
-use LaravelRocket\Generator\Validators\Tables\Rules\Tables\PrimaryKeyName;
-use LaravelRocket\Generator\Validators\Tables\Rules\Tables\TableName;
+use EnzanRocket\Generator\Validators\BaseValidator;
+use EnzanRocket\Generator\Validators\Tables\Rules\Columns\AvoidDateTime;
+use EnzanRocket\Generator\Validators\Tables\Rules\Columns\AvoidLongVarChar;
+use EnzanRocket\Generator\Validators\Tables\Rules\Columns\ColumnName;
+use EnzanRocket\Generator\Validators\Tables\Rules\Columns\GenderWithVarChar;
+use EnzanRocket\Generator\Validators\Tables\Rules\Columns\OptionDefined;
+use EnzanRocket\Generator\Validators\Tables\Rules\Tables\PrimaryKeyName;
+use EnzanRocket\Generator\Validators\Tables\Rules\Tables\TableName;
 
 class TableSchemaValidator extends BaseValidator
 {
     /**
      * @param \TakaakiMizuno\MWBParser\Elements\Table[]    $tables
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return array
      */
     public function validate($tables, $json)
     {
 
-        /** @var \LaravelRocket\Generator\Validators\BaseRule[] $tableRules */
+        /** @var \EnzanRocket\Generator\Validators\BaseRule[] $tableRules */
         $tableRules = [
             new TableName(),
             new PrimaryKeyName(),
         ];
 
-        /** @var \LaravelRocket\Generator\Validators\BaseRule[] $columnRules */
+        /** @var \EnzanRocket\Generator\Validators\BaseRule[] $columnRules */
         $columnRules = [
             new ColumnName(),
             new AvoidLongVarChar(),

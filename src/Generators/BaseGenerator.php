@@ -1,15 +1,14 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators;
+namespace EnzanRocket\Generator\Generators;
 
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Factory;
-use LaravelRocket\Generator\Objects\ClassLike;
-use LaravelRocket\Generator\Objects\Definitions;
-use LaravelRocket\Generator\Services\FileService;
+use EnzanRocket\Generator\Objects\ClassLike;
+use EnzanRocket\Generator\Objects\Definitions;
+use EnzanRocket\Generator\Services\FileService;
 use PhpParser\Error;
-use PhpParser\Lexer;
 use PhpParser\ParserFactory;
 
 class BaseGenerator
@@ -23,13 +22,13 @@ class BaseGenerator
     /** @var \Illuminate\View\Factory */
     protected $view;
 
-    /** @var \LaravelRocket\Generator\Services\FileService */
+    /** @var \EnzanRocket\Generator\Services\FileService */
     protected $fileService;
 
     /** @var bool $rebuild */
     protected $rebuild;
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions $json */
+    /** @var \EnzanRocket\Generator\Objects\Definitions $json */
     protected $json;
 
     /**
@@ -119,13 +118,7 @@ class BaseGenerator
             return null;
         }
 
-        $lexer = new Lexer([
-            'usedAttributes' => [
-                'comments', 'startLine', 'endLine',
-            ],
-        ]);
-
-        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, $lexer);
+        $parser = (new ParserFactory())->createForHostVersion();
 
         try {
             $statements = $parser->parse(file_get_contents($filePath));

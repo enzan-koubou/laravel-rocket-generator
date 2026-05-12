@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin;
+namespace EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\TableBaseFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\TableBaseFileUpdater;
 
 class ReactCRUDAdminFileUpdater extends TableBaseFileUpdater
 {

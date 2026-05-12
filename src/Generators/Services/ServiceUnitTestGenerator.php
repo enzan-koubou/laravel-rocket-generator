@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Services;
+namespace EnzanRocket\Generator\Generators\Services;
 
 class ServiceUnitTestGenerator extends ServiceGenerator
 {

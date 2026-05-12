@@ -1,18 +1,18 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\APIs\OpenAPI;
+namespace EnzanRocket\Generator\Generators\APIs\OpenAPI;
 
-use LaravelRocket\Generator\Generators\APIBaseGenerator;
+use EnzanRocket\Generator\Generators\APIBaseGenerator;
 
 class ResponseGenerator extends APIBaseGenerator
 {
     /** @var string */
     protected $type;
 
-    /** @var \LaravelRocket\Generator\Objects\Table */
+    /** @var \EnzanRocket\Generator\Objects\Table */
     protected $table;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Definition */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Definition */
     protected $definition;
 
     /**

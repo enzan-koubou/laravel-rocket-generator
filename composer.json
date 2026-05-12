@@ -20,16 +20,18 @@
     "symfony/yaml": "^7.0",
     "takaaki-mizuno/php-code-manipulator": "0.1.0",
     "takaaki-mizuno/swagger-parser": "0.1.0",
-    "doctrine/dbal": "^4.4.3"
+    "doctrine/dbal": "^4.4.3",
+    "icanboogie/inflector": "^4.0.0",
+    "nikic/php-parser": "^5.7.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^13.1.8",
-    "icanboogie/inflector": "^4.0.0",
     "laravel/framework": "^13.8.0",
+    "orchestra/testbench": "^11.0",
     "enzan-rocket/foundation": "dev-main",
     "friendsofphp/php-cs-fixer": "^3.95.1",
     "fakerphp/faker": "^1.24.1",
-    "nikic/php-parser": "^5.7.0"
+    "takaaki-mizuno/mwb-parser": "*"
   },
   "autoload": {
     "psr-4": {

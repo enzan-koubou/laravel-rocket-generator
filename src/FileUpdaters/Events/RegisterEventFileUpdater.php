@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\Events;
+namespace EnzanRocket\Generator\FileUpdaters\Events;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\NameBaseFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\NameBaseFileUpdater;
 
 class RegisterEventFileUpdater extends NameBaseFileUpdater
 {

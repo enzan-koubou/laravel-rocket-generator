@@ -1,18 +1,16 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Generators\Models\ColumnLanguageFileGenerator;
-use LaravelRocket\Generator\Generators\Models\ConfigFileGenerator;
-use LaravelRocket\Generator\Generators\Models\ModelFactoryGenerator;
-use LaravelRocket\Generator\Generators\Models\ModelUnitTestGenerator;
-use LaravelRocket\Generator\Generators\Models\PresenterGenerator;
-use LaravelRocket\Generator\Generators\Models\RelationLanguageFileGenerator;
-use LaravelRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\Generators\Models\ColumnLanguageFileGenerator;
+use EnzanRocket\Generator\Generators\Models\ConfigFileGenerator;
+use EnzanRocket\Generator\Generators\Models\ModelFactoryGenerator;
+use EnzanRocket\Generator\Generators\Models\ModelUnitTestGenerator;
+use EnzanRocket\Generator\Generators\Models\PresenterGenerator;
+use EnzanRocket\Generator\Generators\Models\RelationLanguageFileGenerator;
+use EnzanRocket\Generator\Services\DatabaseService;
 
-use function ICanBoogie\pluralize;
-use function ICanBoogie\singularize;
 
 class ModelGenerator extends MWBGenerator
 {
@@ -47,14 +45,14 @@ class ModelGenerator extends MWBGenerator
 
     protected function normalizeName(string $name): string
     {
-        return Str::snake(pluralize($name));
+        return Str::snake(\ICanBoogie\StaticInflector::pluralize($name));
     }
 
     protected function generate()
     {
-        /** @var \LaravelRocket\Generator\Generators\TableBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\TableBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\Models\ModelGenerator($this->config, $this->files, $this->view, $this->json),
+            new \EnzanRocket\Generator\Generators\Models\ModelGenerator($this->config, $this->files, $this->view, $this->json),
             new ModelFactoryGenerator($this->config, $this->files, $this->view, $this->json),
             new ModelUnitTestGenerator($this->config, $this->files, $this->view, $this->json),
             new PresenterGenerator($this->config, $this->files, $this->view, $this->json),
@@ -63,7 +61,7 @@ class ModelGenerator extends MWBGenerator
             new ConfigFileGenerator($this->config, $this->files, $this->view, $this->json),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
         ];
 
@@ -76,7 +74,7 @@ class ModelGenerator extends MWBGenerator
             return;
         }
 
-        $this->output('Processing '.ucfirst(singularize($name)).' ...', 'green');
+        $this->output('Processing '.ucfirst(\ICanBoogie\StaticInflector::singularize($name)).' ...', 'green');
         foreach ($generators as $generator) {
             $generator->generate($table, $this->tables, $this->json);
         }

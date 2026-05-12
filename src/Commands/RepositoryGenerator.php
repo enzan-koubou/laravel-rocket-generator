@@ -1,14 +1,13 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\Models\RegisterRepositoryFileUpdater;
-use LaravelRocket\Generator\Generators\Models\RepositoryInterfaceGenerator;
-use LaravelRocket\Generator\Generators\Models\RepositoryUnitTestGenerator;
-use LaravelRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\FileUpdaters\Models\RegisterRepositoryFileUpdater;
+use EnzanRocket\Generator\Generators\Models\RepositoryInterfaceGenerator;
+use EnzanRocket\Generator\Generators\Models\RepositoryUnitTestGenerator;
+use EnzanRocket\Generator\Services\DatabaseService;
 
-use function ICanBoogie\pluralize;
 
 class RepositoryGenerator extends MWBGenerator
 {
@@ -47,19 +46,19 @@ class RepositoryGenerator extends MWBGenerator
             $name = substr($name, 0, strlen($name) - 10);
         }
 
-        return Str::snake(pluralize($name));
+        return Str::snake(\ICanBoogie\StaticInflector::pluralize($name));
     }
 
     protected function generate()
     {
-        /** @var \LaravelRocket\Generator\Generators\TableBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\TableBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\Models\RepositoryGenerator($this->config, $this->files, $this->view, $this->json),
+            new \EnzanRocket\Generator\Generators\Models\RepositoryGenerator($this->config, $this->files, $this->view, $this->json),
             new RepositoryInterfaceGenerator($this->config, $this->files, $this->view, $this->json),
             new RepositoryUnitTestGenerator($this->config, $this->files, $this->view, $this->json),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
             new RegisterRepositoryFileUpdater($this->config, $this->files, $this->view),
         ];

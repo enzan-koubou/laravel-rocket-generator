@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Services;
+namespace EnzanRocket\Generator\Services;
 
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Filesystem\Filesystem;

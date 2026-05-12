@@ -117,6 +117,8 @@ paths:
       responses:
         "204":
           description: "pet deleted"
+          schema:
+            type: "object"
         default:
           description: "unexpected error"
           schema:

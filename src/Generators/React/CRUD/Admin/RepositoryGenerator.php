@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\React\CRUD\Admin;
+namespace EnzanRocket\Generator\Generators\React\CRUD\Admin;
 
-use LaravelRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
 
 class RepositoryGenerator extends ReactCRUDBaseGenerator
 {

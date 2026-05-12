@@ -1,12 +1,11 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Generators\Migrations\MigrationFileGenerator;
-use LaravelRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\Generators\Migrations\MigrationFileGenerator;
+use EnzanRocket\Generator\Services\DatabaseService;
 
-use function ICanBoogie\pluralize;
 
 class MigrationGenerator extends MWBGenerator
 {
@@ -43,7 +42,7 @@ class MigrationGenerator extends MWBGenerator
 
     protected function normalizeName(string $name): string
     {
-        return Str::snake(pluralize($name));
+        return Str::snake(\ICanBoogie\StaticInflector::pluralize($name));
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\Services\Rules;
+namespace EnzanRocket\Generator\Validators\Services\Rules;
 
 use Illuminate\Support\Arr;
-use LaravelRocket\Generator\Validators\BaseRule;
-use LaravelRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Validators\BaseRule;
+use EnzanRocket\Generator\Validators\Error;
 
 class Coverage extends BaseRule
 {
@@ -12,11 +12,11 @@ class Coverage extends BaseRule
     {
         $name = Arr::get($data, 'name');
 
-        /** @var \LaravelRocket\Generator\Objects\ClassLike $interface */
+        /** @var \EnzanRocket\Generator\Objects\ClassLike $interface */
         $interface = Arr::get($data, 'interface');
-        /** @var \LaravelRocket\Generator\Objects\ClassLike $class */
+        /** @var \EnzanRocket\Generator\Objects\ClassLike $class */
         $class = Arr::get($data, 'class');
-        /** @var \LaravelRocket\Generator\Objects\ClassLike $test */
+        /** @var \EnzanRocket\Generator\Objects\ClassLike $test */
         $test = Arr::get($data, 'test');
 
         $errors = [];

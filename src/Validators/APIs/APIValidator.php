@@ -1,14 +1,14 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\APIs;
+namespace EnzanRocket\Generator\Validators\APIs;
 
-use LaravelRocket\Generator\Validators\BaseValidator;
+use EnzanRocket\Generator\Validators\BaseValidator;
 
 class APIValidator extends BaseValidator
 {
     /**
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
-     * @param \LaravelRocket\Generator\Objects\Definitions         $json
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\Definitions         $json
      *
      * @return array
      */

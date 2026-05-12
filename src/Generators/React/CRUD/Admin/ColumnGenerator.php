@@ -1,12 +1,11 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\React\CRUD\Admin;
+namespace EnzanRocket\Generator\Generators\React\CRUD\Admin;
 
 use Illuminate\Support\Arr;
-use LaravelRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
-use LaravelRocket\Generator\Objects\Table;
+use EnzanRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
+use EnzanRocket\Generator\Objects\Table;
 
-use function ICanBoogie\pluralize;
 
 class ColumnGenerator extends ReactCRUDBaseGenerator
 {
@@ -17,7 +16,7 @@ class ColumnGenerator extends ReactCRUDBaseGenerator
     {
         $modelName = $this->getModelName();
 
-        return resource_path('assets/admin/src/views/'.pluralize($modelName).'/_columns.js');
+        return resource_path('assets/admin/src/views/'.\ICanBoogie\StaticInflector::pluralize($modelName).'/_columns.js');
     }
 
     /**

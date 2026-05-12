@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Models;
+namespace EnzanRocket\Generator\Generators\Models;
 
 use Illuminate\Support\Arr;
-use LaravelRocket\Generator\Objects\Column;
+use EnzanRocket\Generator\Objects\Column;
 
 class ModelGenerator extends ModelBaseGenerator
 {

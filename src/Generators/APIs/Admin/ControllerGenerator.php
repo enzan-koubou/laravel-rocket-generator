@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\APIs\Admin;
+namespace EnzanRocket\Generator\Generators\APIs\Admin;
 
 class ControllerGenerator extends BaseAdminAPIGenerator
 {

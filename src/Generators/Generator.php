@@ -1,6 +1,7 @@
 <?php
 namespace EnzanRocket\Generator\Generators;
 
+use Doctrine\DBAL\DriverManager;
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Factory as ViewFactory;
@@ -216,14 +217,34 @@ abstract class Generator
             return [];
         }
 
-        $platform = \DB::getDoctrineConnection()->getDatabasePlatform();
-        $platform->registerDoctrineTypeMapping('json', 'string');
-
-        $schema = \DB::getDoctrineSchemaManager();
-
+        $schema  = $this->createDbalConnection()->createSchemaManager();
         $columns = $schema->listTableColumns($tableName);
 
         return $columns;
+    }
+
+    /**
+     * @return \Doctrine\DBAL\Connection
+     */
+    protected function createDbalConnection(): \Doctrine\DBAL\Connection
+    {
+        $dbConfig  = config('database.connections.'.config('database.default'));
+        $driverMap = [
+            'mysql'  => 'pdo_mysql',
+            'pgsql'  => 'pdo_pgsql',
+            'sqlite' => 'pdo_sqlite',
+            'sqlsrv' => 'pdo_sqlsrv',
+        ];
+
+        return DriverManager::getConnection([
+            'driver'   => $driverMap[$dbConfig['driver'] ?? 'mysql'] ?? 'pdo_mysql',
+            'host'     => $dbConfig['host'] ?? '127.0.0.1',
+            'port'     => (int) ($dbConfig['port'] ?? 3306),
+            'dbname'   => $dbConfig['database'],
+            'user'     => $dbConfig['username'],
+            'password' => $dbConfig['password'],
+            'charset'  => $dbConfig['charset'] ?? 'utf8mb4',
+        ]);
     }
 
     /**

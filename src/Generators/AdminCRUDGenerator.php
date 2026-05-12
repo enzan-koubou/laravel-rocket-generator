@@ -1,6 +1,8 @@
 <?php
 namespace EnzanRocket\Generator\Generators;
 
+use Illuminate\Support\Str;
+
 class AdminCRUDGenerator extends Generator
 {
     public function generate($name, $overwrite = false, $baseDirectory = null, $additionalData = [])
@@ -278,16 +280,16 @@ class AdminCRUDGenerator extends Generator
         $result    = '';
         foreach ($columns as $column) {
             $name = $column->getName();
-            $type = $column->getType()->getName();
+            $type = \Doctrine\DBAL\Types\Type::lookupName($column->getType());
 
             if ($name == 'id') {
                 continue;
             }
             $stubPath = $this->getStubPath('/admin-crud/form/text.stub');
-            if (ends_with($name, 'image_id')) {
+            if (Str::endsWith($name, 'image_id')) {
                 $stubPath = $this->getStubPath('/admin-crud/form/image.stub');
             } else {
-                if (ends_with($name, '_id') || ends_with($name, 'type')) {
+                if (Str::endsWith($name, '_id') || Str::endsWith($name, 'type')) {
                     $stubPath = $this->getStubPath('/admin-crud/form/select.stub');
                 } else {
                     switch ($type) {
@@ -354,7 +356,7 @@ class AdminCRUDGenerator extends Generator
 
         foreach ($columns as $column) {
             $name = $column->getName();
-            $type = $column->getType()->getName();
+            $type = \Doctrine\DBAL\Types\Type::lookupName($column->getType());
 
             if (\StringHelper::endsWith($name, 'image_id')) {
                 continue;
@@ -391,7 +393,7 @@ class AdminCRUDGenerator extends Generator
         $result  = '';
         foreach ($columns as $column) {
             $name = $column->getName();
-            $type = $column->getType()->getName();
+            $type = \Doctrine\DBAL\Types\Type::lookupName($column->getType());
 
             if (\StringHelper::endsWith($name, 'image_id')) {
                 continue;
@@ -430,7 +432,7 @@ class AdminCRUDGenerator extends Generator
         $result    = '';
         foreach ($columns as $column) {
             $name = $column->getName();
-            $type = $column->getType()->getName();
+            $type = \Doctrine\DBAL\Types\Type::lookupName($column->getType());
 
             if (\StringHelper::endsWith($name, 'image_id')) {
                 continue;
@@ -468,7 +470,7 @@ class AdminCRUDGenerator extends Generator
         $params    = [];
         foreach ($columns as $column) {
             $name = $column->getName();
-            $type = $column->getType()->getName();
+            $type = \Doctrine\DBAL\Types\Type::lookupName($column->getType());
 
             if (\StringHelper::endsWith($name, 'image_id')) {
                 continue;
@@ -508,7 +510,7 @@ class AdminCRUDGenerator extends Generator
         $candidate = 'NONAME';
         foreach ($columns as $column) {
             $name = $column->getName();
-            $type = $column->getType()->getName();
+            $type = \Doctrine\DBAL\Types\Type::lookupName($column->getType());
             if ($type == 'string' || $type == 'text') {
                 return $name;
             }

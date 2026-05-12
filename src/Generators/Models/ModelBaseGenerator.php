@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Models;
+namespace EnzanRocket\Generator\Generators\Models;
 
-use LaravelRocket\Generator\Generators\TableBaseGenerator;
+use EnzanRocket\Generator\Generators\TableBaseGenerator;
 
 class ModelBaseGenerator extends TableBaseGenerator
 {

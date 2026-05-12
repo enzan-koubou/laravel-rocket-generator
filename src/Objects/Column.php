@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects;
+namespace EnzanRocket\Generator\Objects;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Helpers\StringHelper;
+use EnzanRocket\Generator\Helpers\StringHelper;
 
 class Column
 {
@@ -35,7 +35,7 @@ class Column
     protected $definition = [];
 
     /**
-     * @var \LaravelRocket\Generator\Objects\Definitions|null
+     * @var \EnzanRocket\Generator\Objects\Definitions|null
      */
     protected $json = [];
 
@@ -49,7 +49,7 @@ class Column
      *
      * @param \TakaakiMizuno\MWBParser\Elements\Column|\Doctrine\DBAL\Schema\Column $column
      * @param \TakaakiMizuno\MWBParser\Elements\Table|null                          $table
-     * @param \LaravelRocket\Generator\Objects\Definitions                          $json
+     * @param \EnzanRocket\Generator\Objects\Definitions                          $json
      */
     public function __construct($column, $table = null, $json = null)
     {
@@ -167,7 +167,7 @@ class Column
     }
 
     /**
-     * @return bool|\LaravelRocket\Generator\Objects\Relation
+     * @return bool|\EnzanRocket\Generator\Objects\Relation
      */
     public function getRelation()
     {

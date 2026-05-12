@@ -1,13 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\Services\RegisterServiceFileUpdater;
-use LaravelRocket\Generator\Generators\Services\ServiceInterfaceGenerator;
-use LaravelRocket\Generator\Generators\Services\ServiceUnitTestGenerator;
+use EnzanRocket\Generator\FileUpdaters\Services\RegisterServiceFileUpdater;
+use EnzanRocket\Generator\Generators\Services\ServiceInterfaceGenerator;
+use EnzanRocket\Generator\Generators\Services\ServiceUnitTestGenerator;
 
-use function ICanBoogie\singularize;
 
 class ServiceGenerator extends BaseCommand
 {
@@ -36,21 +35,21 @@ class ServiceGenerator extends BaseCommand
             $name = substr($name, 0, strlen($name) - 7);
         }
 
-        return ucfirst(Str::camel(singularize($name)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($name)));
     }
 
     protected function generateService()
     {
         $rebuild = !empty($this->input->getOption('rebuild'));
 
-        /** @var \LaravelRocket\Generator\Generators\NameBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\NameBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\Services\ServiceGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
+            new \EnzanRocket\Generator\Generators\Services\ServiceGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ServiceInterfaceGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ServiceUnitTestGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\NameBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\NameBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
             new RegisterServiceFileUpdater($this->config, $this->files, $this->view, $rebuild),
         ];

@@ -1,12 +1,11 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Models;
+namespace EnzanRocket\Generator\Generators\Models;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Objects\Column;
+use EnzanRocket\Generator\Objects\Column;
 
-use function ICanBoogie\pluralize;
 
 class ColumnLanguageFileGenerator extends ModelBaseGenerator
 {
@@ -16,7 +15,7 @@ class ColumnLanguageFileGenerator extends ModelBaseGenerator
     protected function getPath(): string
     {
         $modelName = $this->getModelName();
-        $viewName  = Str::kebab(pluralize($modelName));
+        $viewName  = Str::kebab(\ICanBoogie\StaticInflector::pluralize($modelName));
 
         return resource_path('lang/en/tables/'.$this->table->getName().'/columns.php');
     }

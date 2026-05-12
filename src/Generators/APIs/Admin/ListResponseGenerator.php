@@ -1,8 +1,7 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\APIs\Admin;
+namespace EnzanRocket\Generator\Generators\APIs\Admin;
 
-use function ICanBoogie\pluralize;
 
 class ListResponseGenerator extends BaseAdminAPIGenerator
 {
@@ -13,7 +12,7 @@ class ListResponseGenerator extends BaseAdminAPIGenerator
     {
         $modelName = $this->getModelName();
 
-        return app_path('Http/Responses/Api/Admin/'.pluralize($modelName).'.php');
+        return app_path('Http/Responses/Api/Admin/'.\ICanBoogie\StaticInflector::pluralize($modelName).'.php');
     }
 
     /**
@@ -29,6 +28,6 @@ class ListResponseGenerator extends BaseAdminAPIGenerator
      */
     protected function getClassName(): string
     {
-        return pluralize($this->getModelName());
+        return \ICanBoogie\StaticInflector::pluralize($this->getModelName());
     }
 }

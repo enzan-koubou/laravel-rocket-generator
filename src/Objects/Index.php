@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects;
+namespace EnzanRocket\Generator\Objects;
 
 class Index
 {

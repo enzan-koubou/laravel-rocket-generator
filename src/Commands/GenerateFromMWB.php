@@ -1,34 +1,34 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
-use LaravelRocket\Generator\FileUpdaters\APIs\Admin\RouterFileUpdater;
-use LaravelRocket\Generator\FileUpdaters\Models\RegisterRepositoryFileUpdater;
-use LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileRouteUpdater;
-use LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileUseUpdater;
-use LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin\SideBarFileUpdater;
-use LaravelRocket\Generator\Generators\APIs\Admin\ControllerGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\ListResponseGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\RequestGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\ResponseGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\UnitTestGenerator;
-use LaravelRocket\Generator\Generators\Migrations\MigrationFileGenerator;
-use LaravelRocket\Generator\Generators\Models\ColumnLanguageFileGenerator;
-use LaravelRocket\Generator\Generators\Models\ConfigFileGenerator;
-use LaravelRocket\Generator\Generators\Models\ModelFactoryGenerator;
-use LaravelRocket\Generator\Generators\Models\ModelGenerator;
-use LaravelRocket\Generator\Generators\Models\ModelUnitTestGenerator;
-use LaravelRocket\Generator\Generators\Models\PresenterGenerator;
-use LaravelRocket\Generator\Generators\Models\RelationLanguageFileGenerator;
-use LaravelRocket\Generator\Generators\Models\RepositoryGenerator;
-use LaravelRocket\Generator\Generators\Models\RepositoryInterfaceGenerator;
-use LaravelRocket\Generator\Generators\Models\RepositoryUnitTestGenerator;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\ColumnGenerator;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\InfoGenerator;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\ViewGenerator;
-use LaravelRocket\Generator\Services\DatabaseService;
-use LaravelRocket\Generator\Validators\Error;
-use LaravelRocket\Generator\Validators\Tables\TableSchemaValidator;
+use EnzanRocket\Generator\FileUpdaters\APIs\Admin\RouterFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\Models\RegisterRepositoryFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileRouteUpdater;
+use EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileUseUpdater;
+use EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin\SideBarFileUpdater;
+use EnzanRocket\Generator\Generators\APIs\Admin\ControllerGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\ListResponseGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\RequestGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\ResponseGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\UnitTestGenerator;
+use EnzanRocket\Generator\Generators\Migrations\MigrationFileGenerator;
+use EnzanRocket\Generator\Generators\Models\ColumnLanguageFileGenerator;
+use EnzanRocket\Generator\Generators\Models\ConfigFileGenerator;
+use EnzanRocket\Generator\Generators\Models\ModelFactoryGenerator;
+use EnzanRocket\Generator\Generators\Models\ModelGenerator;
+use EnzanRocket\Generator\Generators\Models\ModelUnitTestGenerator;
+use EnzanRocket\Generator\Generators\Models\PresenterGenerator;
+use EnzanRocket\Generator\Generators\Models\RelationLanguageFileGenerator;
+use EnzanRocket\Generator\Generators\Models\RepositoryGenerator;
+use EnzanRocket\Generator\Generators\Models\RepositoryInterfaceGenerator;
+use EnzanRocket\Generator\Generators\Models\RepositoryUnitTestGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\ColumnGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\InfoGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\ViewGenerator;
+use EnzanRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Validators\Tables\TableSchemaValidator;
 
 class GenerateFromMWB extends MWBGenerator
 {
@@ -87,7 +87,7 @@ class GenerateFromMWB extends MWBGenerator
         $validator = new TableSchemaValidator($this->config, $this->files, $this->view);
 
         /** @var bool $success */
-        /** @var \LaravelRocket\Generator\Validators\Error[] $errors */
+        /** @var \EnzanRocket\Generator\Validators\Error[] $errors */
         list($success, $errors) = $validator->validate($this->tables, $this->json);
 
         $this->output('Table Schema Validation Result');
@@ -140,7 +140,7 @@ class GenerateFromMWB extends MWBGenerator
     {
         $rebuild = !empty($this->input->getOption('rebuild'));
 
-        /** @var \LaravelRocket\Generator\Generators\TableBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\TableBaseGenerator[] $generators */
         $generators = [
             new ModelGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ModelFactoryGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
@@ -161,13 +161,13 @@ class GenerateFromMWB extends MWBGenerator
             new RequestGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
 
             // Admin CRUD
-            new \LaravelRocket\Generator\Generators\React\CRUD\Admin\RepositoryGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
+            new \EnzanRocket\Generator\Generators\React\CRUD\Admin\RepositoryGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ViewGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new InfoGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ColumnGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
             new RegisterRepositoryFileUpdater($this->config, $this->files, $this->view, $rebuild),
 

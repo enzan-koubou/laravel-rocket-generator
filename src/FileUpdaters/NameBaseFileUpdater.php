@@ -1,10 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters;
+namespace EnzanRocket\Generator\FileUpdaters;
 
 use Illuminate\Support\Str;
 
-use function ICanBoogie\singularize;
 
 class NameBaseFileUpdater extends BaseFileUpdater
 {
@@ -15,7 +14,7 @@ class NameBaseFileUpdater extends BaseFileUpdater
 
     protected function normalizeName(string $name): string
     {
-        return ucfirst(Str::camel(singularize($name)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($name)));
     }
 
     /**

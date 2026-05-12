@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\APIs\OpenAPI;
+namespace EnzanRocket\Generator\FileUpdaters\APIs\OpenAPI;
 
-use LaravelRocket\Generator\FileUpdaters\OpenAPIBaseFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\OpenAPIBaseFileUpdater;
 
 class RouterFileUpdater extends OpenAPIBaseFileUpdater
 {
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Action */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Action */
     protected $action;
 
     protected function preprocess()

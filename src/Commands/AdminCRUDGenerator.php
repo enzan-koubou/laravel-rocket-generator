@@ -1,20 +1,19 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileRouteUpdater;
-use LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileUseUpdater;
-use LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin\SideBarFileUpdater;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\ColumnGenerator;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\InfoGenerator;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\RepositoryGenerator;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\RoleConfigGenerator;
-use LaravelRocket\Generator\Generators\React\CRUD\Admin\ViewGenerator;
-use LaravelRocket\Generator\Objects\Table;
-use LaravelRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileRouteUpdater;
+use EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin\RouterFileUseUpdater;
+use EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin\SideBarFileUpdater;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\ColumnGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\InfoGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\RepositoryGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\RoleConfigGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\Admin\ViewGenerator;
+use EnzanRocket\Generator\Objects\Table;
+use EnzanRocket\Generator\Services\DatabaseService;
 
-use function ICanBoogie\pluralize;
 
 class AdminCRUDGenerator extends MWBGenerator
 {
@@ -49,7 +48,7 @@ class AdminCRUDGenerator extends MWBGenerator
 
     protected function normalizeName(string $name): string
     {
-        return Str::snake(pluralize($name));
+        return Str::snake(\ICanBoogie\StaticInflector::pluralize($name));
     }
 
     protected function generate()
@@ -64,7 +63,7 @@ class AdminCRUDGenerator extends MWBGenerator
             $generator->generate($this->json);
         }
 
-        /** @var \LaravelRocket\Generator\Generators\TableBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\TableBaseGenerator[] $generators */
         $generators = [
             new RepositoryGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ViewGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
@@ -72,7 +71,7 @@ class AdminCRUDGenerator extends MWBGenerator
             new ColumnGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
             new RouterFileRouteUpdater($this->config, $this->files, $this->view),
             new RouterFileUseUpdater($this->config, $this->files, $this->view),

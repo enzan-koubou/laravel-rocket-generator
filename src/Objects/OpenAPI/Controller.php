@@ -1,18 +1,18 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
-use LaravelRocket\Generator\Objects\Relation;
+use EnzanRocket\Generator\Objects\Relation;
 
 class Controller
 {
     /** @var string */
     protected $name;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Action[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Action[] */
     protected $actions;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec */
     protected $spec;
 
     /** @var string[] */
@@ -24,15 +24,15 @@ class Controller
     /** @var string[] */
     protected $responseNames = [];
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Request[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Request[] */
     protected $requests = [];
 
     /**
      * Controller constructor.
      *
      * @param string                                               $name
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\Action[]    $actions
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\Action[]    $actions
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
      */
     public function __construct($name, $actions, $spec)
     {
@@ -54,7 +54,7 @@ class Controller
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Action[]
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Action[]
      */
     public function getActions(): array
     {
@@ -64,7 +64,7 @@ class Controller
     /**
      * @param string $name
      *
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Action|null
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Action|null
      */
     public function findActionByName(string $name)
     {
@@ -99,7 +99,7 @@ class Controller
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Request[]
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Request[]
      */
     public function getRequiredRequests(): array
     {
@@ -117,7 +117,7 @@ class Controller
     /**
      * @param string $name
      *
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Request|null
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Request|null
      */
     public function findRequest(string $name)
     {

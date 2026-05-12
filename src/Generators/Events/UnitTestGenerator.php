@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Events;
+namespace EnzanRocket\Generator\Generators\Events;
 
 class UnitTestGenerator extends EventGenerator
 {

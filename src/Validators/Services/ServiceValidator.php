@@ -1,23 +1,23 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\Services;
+namespace EnzanRocket\Generator\Validators\Services;
 
-use LaravelRocket\Generator\Objects\ClassLike;
-use LaravelRocket\Generator\Validators\BaseValidator;
-use LaravelRocket\Generator\Validators\Services\Rules\Consistency;
-use LaravelRocket\Generator\Validators\Services\Rules\Coverage;
+use EnzanRocket\Generator\Objects\ClassLike;
+use EnzanRocket\Generator\Validators\BaseValidator;
+use EnzanRocket\Generator\Validators\Services\Rules\Consistency;
+use EnzanRocket\Generator\Validators\Services\Rules\Coverage;
 
 class ServiceValidator extends BaseValidator
 {
     /**
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return array
      */
     public function validate($json)
     {
 
-        /** @var \LaravelRocket\Generator\Validators\BaseRule[] $tableRules */
+        /** @var \EnzanRocket\Generator\Validators\BaseRule[] $tableRules */
         $rules = [
             new Coverage(),
             new Consistency(),

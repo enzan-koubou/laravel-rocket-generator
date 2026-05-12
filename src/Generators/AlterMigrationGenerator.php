@@ -2,8 +2,8 @@
 namespace EnzanRocket\Generator\Generators;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
-use function ICanBoogie\pluralize;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class AlterMigrationGenerator extends Generator
 {
@@ -32,18 +32,18 @@ class AlterMigrationGenerator extends Generator
 
     protected function getTableName($name)
     {
-        return pluralize(snake_case($name));
+        return \ICanBoogie\StaticInflector::pluralize(Str::snake($name));
     }
 
     protected function getAlterClassName($name, $action)
     {
-        return 'Alter'.ucfirst(camel_case($name)).ucfirst(camel_case($action)).'Table';
+        return 'Alter'.ucfirst(Str::camel($name)).ucfirst(Str::camel($action)).'Table';
     }
 
     protected function getPath($name, $action)
     {
         $basePath = database_path('migrations');
-        $action   = snake_case($action);
+        $action   = Str::snake($action);
 
         return $basePath.'/'.date('Y_m_d_His').'_alter_'.$name.'_'.$action.'_table.php';
     }

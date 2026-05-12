@@ -1,17 +1,16 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\React\CRUD\Admin;
+namespace EnzanRocket\Generator\Generators\React\CRUD\Admin;
 
-use LaravelRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
 
-use function ICanBoogie\pluralize;
 
 class ViewGenerator extends ReactCRUDBaseGenerator
 {
     /**
      * @param \TakaakiMizuno\MWBParser\Elements\Table      $table
      * @param \TakaakiMizuno\MWBParser\Elements\Table[]    $tables
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return bool
      */
@@ -54,7 +53,7 @@ class ViewGenerator extends ReactCRUDBaseGenerator
         $modelName = $this->getModelName();
         $viewName  = $modelName.ucfirst($action).'.js';
 
-        return resource_path('assets/admin/src/views/'.pluralize($modelName).'/'.$viewName);
+        return resource_path('assets/admin/src/views/'.\ICanBoogie\StaticInflector::pluralize($modelName).'/'.$viewName);
     }
 
     /**

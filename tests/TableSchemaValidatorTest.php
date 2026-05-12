@@ -1,8 +1,8 @@
 <?php
-namespace LaravelRocket\Generator\Tests;
+namespace EnzanRocket\Generator\Tests;
 
-use LaravelRocket\Generator\Objects\Definitions;
-use LaravelRocket\Generator\Validators\Tables\TableSchemaValidator;
+use EnzanRocket\Generator\Objects\Definitions;
+use EnzanRocket\Generator\Validators\Tables\TableSchemaValidator;
 use TakaakiMizuno\MWBParser\Parser;
 
 class TableSchemaValidatorTest extends TestCase

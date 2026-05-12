@@ -1,13 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators;
+namespace EnzanRocket\Generator\Generators;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Objects\Column;
+use EnzanRocket\Generator\Objects\Column;
 use TakaakiMizuno\MWBParser\Elements\Table;
 
-use function ICanBoogie\singularize;
 
 class TableBaseGenerator extends BaseGenerator
 {
@@ -24,17 +23,17 @@ class TableBaseGenerator extends BaseGenerator
     protected $tables;
 
     /**
-     * @var \LaravelRocket\Generator\Objects\Definitions
+     * @var \EnzanRocket\Generator\Objects\Definitions
      */
     protected $json;
 
-    /** @var \LaravelRocket\Generator\Objects\Table */
+    /** @var \EnzanRocket\Generator\Objects\Table */
     protected $tableObject;
 
     /**
      * @param Table                                        $table
      * @param Table[]                                      $tables
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return bool
      */
@@ -68,7 +67,7 @@ class TableBaseGenerator extends BaseGenerator
     {
         $this->table       = $table;
         $this->tables      = $tables;
-        $this->tableObject = new \LaravelRocket\Generator\Objects\Table($this->table, $this->tables, $this->json);
+        $this->tableObject = new \EnzanRocket\Generator\Objects\Table($this->table, $this->tables, $this->json);
     }
 
     /**
@@ -139,7 +138,7 @@ class TableBaseGenerator extends BaseGenerator
             }
             $tables[] = $foreignKey->getReferenceTableName();
         }
-        if ($table->getName() === implode('_', [singularize($tables[0]), $tables[1]]) || $table->getName() === implode('_', [singularize($tables[1]), $tables[0]])) {
+        if ($table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[0]), $tables[1]]) || $table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[1]), $tables[0]])) {
             return true;
         }
 
@@ -174,12 +173,12 @@ class TableBaseGenerator extends BaseGenerator
         }
 
         if (count($tables) === 2) {
-            if ($table->getName() === implode('_', [singularize($tables[0]), $tables[1]])) {
+            if ($table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[0]), $tables[1]])) {
                 return [
                     'parentKey' => Arr::get($columns, '0.0') ? (Arr::get($columns, '0.0'))->getName() : '',
                     'childKey'  => Arr::get($columns, '1.0') ? (Arr::get($columns, '1.0'))->getName() : '',
                 ];
-            } elseif ($table->getName() === implode('_', [singularize($tables[1]), $tables[0]])) {
+            } elseif ($table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[1]), $tables[0]])) {
                 return [
                     'parentKey' => Arr::get($columns, '1.0') ? (Arr::get($columns, '1.0'))->getName() : '',
                     'childKey'  => Arr::get($columns, '0.0') ? (Arr::get($columns, '0.0'))->getName() : '',
@@ -194,7 +193,7 @@ class TableBaseGenerator extends BaseGenerator
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\Relation[]
+     * @return \EnzanRocket\Generator\Objects\Relation[]
      */
     public function getRelations(): array
     {

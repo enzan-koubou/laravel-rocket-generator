@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\APIs\OpenAPI;
+namespace EnzanRocket\Generator\Generators\APIs\OpenAPI;
 
-use LaravelRocket\Generator\Generators\APIBaseGenerator;
+use EnzanRocket\Generator\Generators\APIBaseGenerator;
 
 class ControllerGenerator extends APIBaseGenerator
 {
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Controller */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Controller */
     protected $controller;
 
     /**

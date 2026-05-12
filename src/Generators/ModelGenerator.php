@@ -1,6 +1,11 @@
 <?php
 namespace EnzanRocket\Generator\Generators;
 
+use Doctrine\DBAL\Types\DateTimeType;
+use Doctrine\DBAL\Types\DateType;
+use Doctrine\DBAL\Types\TimeType;
+use Illuminate\Support\Str;
+
 class ModelGenerator extends Generator
 {
     public function generate($name, $overwrite = false, $baseDirectory = null, $additionalData = [])
@@ -71,7 +76,8 @@ class ModelGenerator extends Generator
         $columns   = $this->getTableColumns($tableName);
         if ($columns) {
             foreach ($columns as $column) {
-                if (!in_array($column->getType()->getName(), ['datetime', 'date', 'time'])) {
+                $columnType = $column->getType();
+                if (!($columnType instanceof DateTimeType || $columnType instanceof DateType || $columnType instanceof TimeType)) {
                     continue;
                 }
                 $columnName = $column->getName();
@@ -117,10 +123,11 @@ class ModelGenerator extends Generator
             return [];
         }
 
-        $tables = \DB::getDoctrineSchemaManager()->listTables();
-        $ret    = [];
-        foreach ($tables as $table) {
-            $ret[] = $table->getName();
+        $schema     = $this->createDbalConnection()->createSchemaManager();
+        $tableNames = $schema->listTableNames();
+        $ret        = [];
+        foreach ($tableNames as $tableName) {
+            $ret[] = $tableName;
         }
 
         return $ret;
@@ -261,7 +268,7 @@ class ModelGenerator extends Generator
 
         foreach ($columns as $column) {
             $defaultValue = "''";
-            switch ($column->getType()->getName()) {
+            switch (\Doctrine\DBAL\Types\Type::lookupName($column->getType())) {
                 case 'bigint':
                 case 'integer':
                 case 'smallint':
@@ -309,13 +316,13 @@ class ModelGenerator extends Generator
                 case 'language_code':
                 case 'country_code':
                 case 'currency_code':
-                    $defaultValue = '$faker->'.camel_case($column->getName());
+                    $defaultValue = '$faker->'.Str::camel($column->getName());
                     break;
             }
-            if (ends_with($column->getName(), '_url')) {
+            if (Str::endsWith($column->getName(), '_url')) {
                 $defaultValue = '$faker->url';
             }
-            if (ends_with($column->getName(), '_name')) {
+            if (Str::endsWith($column->getName(), '_name')) {
                 $defaultValue = '$faker->name';
             }
             $data .= "        '".$column->getName()."' => ".$defaultValue.','.PHP_EOL;

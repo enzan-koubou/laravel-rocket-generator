@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Helpers;
+namespace EnzanRocket\Generator\Generators\Helpers;
 
 class HelperInterfaceGenerator extends HelperGenerator
 {

@@ -1,11 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin;
+namespace EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Objects\Table;
+use EnzanRocket\Generator\Objects\Table;
 
-use function ICanBoogie\pluralize;
 
 class RouterFileRouteUpdater extends ReactCRUDAdminFileUpdater
 {
@@ -60,7 +59,7 @@ class RouterFileRouteUpdater extends ReactCRUDAdminFileUpdater
     protected function getInsertData(): string
     {
         $modelName   = $this->getModelName();
-        $pathName    = Str::snake(pluralize($modelName));
+        $pathName    = Str::snake(\ICanBoogie\StaticInflector::pluralize($modelName));
         $tableObject = new Table($this->table, $this->tables, $this->json);
         $displayName = $tableObject->getDisplayName();
 

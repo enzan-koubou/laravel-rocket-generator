@@ -1,18 +1,16 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\APIs\Admin\RouterFileUpdater;
-use LaravelRocket\Generator\Generators\APIs\Admin\ControllerGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\ListResponseGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\RequestGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\ResponseGenerator;
-use LaravelRocket\Generator\Generators\APIs\Admin\UnitTestGenerator;
-use LaravelRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\FileUpdaters\APIs\Admin\RouterFileUpdater;
+use EnzanRocket\Generator\Generators\APIs\Admin\ControllerGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\ListResponseGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\RequestGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\ResponseGenerator;
+use EnzanRocket\Generator\Generators\APIs\Admin\UnitTestGenerator;
+use EnzanRocket\Generator\Services\DatabaseService;
 
-use function ICanBoogie\pluralize;
-use function ICanBoogie\singularize;
 
 class AdminAPIGenerator extends MWBGenerator
 {
@@ -47,14 +45,14 @@ class AdminAPIGenerator extends MWBGenerator
 
     protected function normalizeName(string $name): string
     {
-        return Str::snake(pluralize($name));
+        return Str::snake(\ICanBoogie\StaticInflector::pluralize($name));
     }
 
     protected function generate()
     {
         $rebuild = !empty($this->input->getOption('rebuild'));
 
-        /** @var \LaravelRocket\Generator\Generators\TableBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\TableBaseGenerator[] $generators */
         $generators = [
             new ResponseGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ListResponseGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
@@ -63,7 +61,7 @@ class AdminAPIGenerator extends MWBGenerator
             new RequestGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\TableBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
             new RouterFileUpdater($this->config, $this->files, $this->view, $rebuild),
         ];
@@ -84,7 +82,7 @@ class AdminAPIGenerator extends MWBGenerator
         }
 
         foreach ($tables as $table) {
-            $this->output('Processing '.ucfirst(singularize($table->getName())).' Admin API...', 'green');
+            $this->output('Processing '.ucfirst(\ICanBoogie\StaticInflector::singularize($table->getName())).' Admin API...', 'green');
             foreach ($generators as $generator) {
                 $generator->generate($table, $this->tables, $this->json);
             }

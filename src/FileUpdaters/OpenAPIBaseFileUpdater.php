@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters;
+namespace EnzanRocket\Generator\FileUpdaters;
 
 class OpenAPIBaseFileUpdater extends BaseFileUpdater
 {
@@ -9,10 +9,10 @@ class OpenAPIBaseFileUpdater extends BaseFileUpdater
     /** @var string */
     protected $name;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec */
     protected $spec;
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions */
+    /** @var \EnzanRocket\Generator\Objects\Definitions */
     protected $json;
 
     /** @var string */
@@ -20,8 +20,8 @@ class OpenAPIBaseFileUpdater extends BaseFileUpdater
 
     /**
      * @param string                                               $name
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
-     * @param \LaravelRocket\Generator\Objects\Definitions         $json
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\Definitions         $json
      *
      * @return bool
      */

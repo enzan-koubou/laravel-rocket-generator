@@ -1,11 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\Helpers;
+namespace EnzanRocket\Generator\FileUpdaters\Helpers;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\NameBaseFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\NameBaseFileUpdater;
 
-use function ICanBoogie\singularize;
 
 class AppConfigFileUpdater extends NameBaseFileUpdater
 {
@@ -15,7 +14,7 @@ class AppConfigFileUpdater extends NameBaseFileUpdater
             $name = substr($name, 0, strlen($name) - 7);
         }
 
-        return ucfirst(Str::camel(singularize($name)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($name)));
     }
 
     protected function getTargetFilePath(): string

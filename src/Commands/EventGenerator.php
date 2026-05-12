@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\Events\RegisterEventFileUpdater;
-use LaravelRocket\Generator\Generators\Events\ListenerGenerator;
-use LaravelRocket\Generator\Generators\Events\UnitTestGenerator;
+use EnzanRocket\Generator\FileUpdaters\Events\RegisterEventFileUpdater;
+use EnzanRocket\Generator\Generators\Events\ListenerGenerator;
+use EnzanRocket\Generator\Generators\Events\UnitTestGenerator;
 
 class EventGenerator extends BaseCommand
 {
@@ -37,14 +37,14 @@ class EventGenerator extends BaseCommand
     {
         $rebuild = !empty($this->input->getOption('rebuild'));
 
-        /** @var \LaravelRocket\Generator\Generators\NameBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\NameBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\Events\EventGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
+            new \EnzanRocket\Generator\Generators\Events\EventGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new ListenerGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
             new UnitTestGenerator($this->config, $this->files, $this->view, $this->json, $rebuild),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\NameBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\NameBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
             new RegisterEventFileUpdater($this->config, $this->files, $this->view, $rebuild),
         ];

@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\React\CRUD\Admin;
+namespace EnzanRocket\Generator\Generators\React\CRUD\Admin;
 
-use LaravelRocket\Generator\Generators\BaseGenerator;
+use EnzanRocket\Generator\Generators\BaseGenerator;
 
 class RoleConfigGenerator extends BaseGenerator
 {
     /**
-     * @var \LaravelRocket\Generator\Objects\Definitions
+     * @var \EnzanRocket\Generator\Objects\Definitions
      */
     protected $json;
 
@@ -37,7 +37,7 @@ class RoleConfigGenerator extends BaseGenerator
     }
 
     /**
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return bool
      */

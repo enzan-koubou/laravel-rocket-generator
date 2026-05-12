@@ -1,8 +1,7 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin;
+namespace EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin;
 
-use function ICanBoogie\pluralize;
 
 class RouterFileUseUpdater extends ReactCRUDAdminFileUpdater
 {
@@ -57,7 +56,7 @@ class RouterFileUseUpdater extends ReactCRUDAdminFileUpdater
     protected function getInsertData(): string
     {
         $modelName = $this->getModelName();
-        $pathName  = pluralize($modelName);
+        $pathName  = \ICanBoogie\StaticInflector::pluralize($modelName);
 
         return <<< EOS
 import {$modelName}Index from '../../views/$pathName/{$modelName}Index';

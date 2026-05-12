@@ -1,11 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Services;
+namespace EnzanRocket\Generator\Generators\Services;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Generators\NameBaseGenerator;
+use EnzanRocket\Generator\Generators\NameBaseGenerator;
 
-use function ICanBoogie\singularize;
 
 class ServiceGenerator extends NameBaseGenerator
 {
@@ -20,7 +19,7 @@ class ServiceGenerator extends NameBaseGenerator
             $name = substr($name, 0, strlen($name) - 7);
         }
 
-        return ucfirst(Str::camel(singularize($name)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($name)));
     }
 
     /**

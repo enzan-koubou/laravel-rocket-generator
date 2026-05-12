@@ -1,8 +1,8 @@
 <?php
-namespace LaravelRocket\Generator\Tests\Helpers;
+namespace EnzanRocket\Generator\Tests\Helpers;
 
-use LaravelRocket\Generator\Helpers\StringHelper;
-use LaravelRocket\Generator\Tests\TestCase;
+use EnzanRocket\Generator\Helpers\StringHelper;
+use EnzanRocket\Generator\Tests\TestCase;
 
 class StringHelperTest extends TestCase
 {

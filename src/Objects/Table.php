@@ -1,11 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects;
+namespace EnzanRocket\Generator\Objects;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-use function ICanBoogie\singularize;
 
 class Table
 {
@@ -15,19 +14,19 @@ class Table
     /** @var bool */
     protected $isRelationTable = false;
 
-    /** @var \LaravelRocket\Generator\Objects\Column[] */
+    /** @var \EnzanRocket\Generator\Objects\Column[] */
     protected $columns = [];
 
-    /** @var \LaravelRocket\Generator\Objects\Column[] */
+    /** @var \EnzanRocket\Generator\Objects\Column[] */
     protected $columnHash = [];
 
-    /** @var \LaravelRocket\Generator\Objects\Relation[] */
+    /** @var \EnzanRocket\Generator\Objects\Relation[] */
     protected $relations = [];
 
-    /** @var \LaravelRocket\Generator\Objects\Relation[] */
+    /** @var \EnzanRocket\Generator\Objects\Relation[] */
     protected $relationHash = [];
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions|null */
+    /** @var \EnzanRocket\Generator\Objects\Definitions|null */
     protected $json;
 
     /**
@@ -35,7 +34,7 @@ class Table
      *
      * @param \TakaakiMizuno\MWBParser\Elements\Table      $table
      * @param \TakaakiMizuno\MWBParser\Elements\Table[]    $tables
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      */
     public function __construct($table, $tables, $json = null)
     {
@@ -64,7 +63,7 @@ class Table
      */
     public function getModelName(): string
     {
-        return ucfirst(Str::camel(singularize($this->table->getName())));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($this->table->getName())));
     }
 
     /**
@@ -81,7 +80,7 @@ class Table
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\Column[]
+     * @return \EnzanRocket\Generator\Objects\Column[]
      */
     public function getColumns()
     {
@@ -101,7 +100,7 @@ class Table
     /**
      * @param string $name
      *
-     * @return \LaravelRocket\Generator\Objects\Column|null
+     * @return \EnzanRocket\Generator\Objects\Column|null
      */
     public function getColumn($name)
     {
@@ -109,7 +108,7 @@ class Table
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\Relation[]
+     * @return \EnzanRocket\Generator\Objects\Relation[]
      */
     public function getRelations(): array
     {
@@ -129,7 +128,7 @@ class Table
     /**
      * @param string $name
      *
-     * @return \LaravelRocket\Generator\Objects\Relation|null
+     * @return \EnzanRocket\Generator\Objects\Relation|null
      */
     public function getRelation($name)
     {
@@ -350,8 +349,8 @@ class Table
             }
             $tables[] = $foreignKey->getReferenceTableName();
         }
-        if ($table->getName() === implode('_', [singularize($tables[0]), $tables[1]])
-            || $table->getName() === implode('_', [singularize($tables[1]), $tables[0]])) {
+        if ($table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[0]), $tables[1]])
+            || $table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[1]), $tables[0]])) {
             return true;
         }
 
@@ -395,11 +394,11 @@ class Table
     /**
      * @param self $table
      *
-     * @return \LaravelRocket\Generator\Objects\Relation|null
+     * @return \EnzanRocket\Generator\Objects\Relation|null
      */
     public function findRelationWithTable($table)
     {
-        $relation = $this->getRelation($table->getName()) ?: $this->getRelation(singularize($table->getName()));
+        $relation = $this->getRelation($table->getName()) ?: $this->getRelation(\ICanBoogie\StaticInflector::singularize($table->getName()));
 
         return $relation;
     }

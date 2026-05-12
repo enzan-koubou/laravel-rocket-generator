@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators;
+namespace EnzanRocket\Generator\Validators;
 
 class BaseRule
 {
@@ -10,7 +10,7 @@ class BaseRule
     }
 
     /**
-     * @param \LaravelRocket\Generator\Validators\Error[] $errors
+     * @param \EnzanRocket\Generator\Validators\Error[] $errors
      *
      * @return array
      */

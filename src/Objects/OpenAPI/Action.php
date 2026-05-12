@@ -1,12 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-use function ICanBoogie\pluralize;
-use function ICanBoogie\singularize;
 
 class Action
 {
@@ -87,37 +85,37 @@ class Action
     /** @var \TakaakiMizuno\SwaggerParser\Objects\Base */
     protected $info;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec */
     protected $spec;
 
     /** @var bool */
     protected $hasParent = false;
 
-    /** @var \LaravelRocket\Generator\Objects\Table|null */
+    /** @var \EnzanRocket\Generator\Objects\Table|null */
     protected $targetTable = null;
 
-    /** @var \LaravelRocket\Generator\Objects\Table|null */
+    /** @var \EnzanRocket\Generator\Objects\Table|null */
     protected $parentTable = null;
 
-    /** @var \LaravelRocket\Generator\Objects\Relation|null */
+    /** @var \EnzanRocket\Generator\Objects\Relation|null */
     protected $parentRelation = null;
 
     /** @var array */
     protected $parentFilters = [];
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\PathElement[] $elements */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\PathElement[] $elements */
     protected $elements = [];
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Parameter[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Parameter[] */
     protected $params = [];
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Parameter[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Parameter[] */
     protected $queries = [];
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Definition|null */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Definition|null */
     protected $response;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Request */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Request */
     protected $request;
 
     /** @var string */
@@ -129,7 +127,7 @@ class Action
      * @param string                                               $path
      * @param string                                               $httpMethod
      * @param \TakaakiMizuno\SwaggerParser\Objects\Base            $info
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
      */
     public function __construct($path, $httpMethod, $info, $spec)
     {
@@ -190,7 +188,7 @@ class Action
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\Table
+     * @return \EnzanRocket\Generator\Objects\Table
      */
     public function getTargetTable()
     {
@@ -210,7 +208,7 @@ class Action
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\Table
+     * @return \EnzanRocket\Generator\Objects\Table
      */
     public function getParentTable()
     {
@@ -230,7 +228,7 @@ class Action
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\Relation
+     * @return \EnzanRocket\Generator\Objects\Relation
      */
     public function getParentRelation()
     {
@@ -313,7 +311,7 @@ class Action
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Definition
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Definition
      */
     public function getResponse()
     {
@@ -321,7 +319,7 @@ class Action
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Request
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Request
      */
     public function getRequest()
     {
@@ -423,14 +421,14 @@ class Action
     {
         $pathElement = $this->elements[$index];
 
-        $name = Str::snake(pluralize($pathElement->elementName()));
+        $name = Str::snake(\ICanBoogie\StaticInflector::pluralize($pathElement->elementName()));
 
         $table = $this->spec->findTable($name);
         if (!empty($table)) {
             return $table->getModelName();
         }
 
-        $name = Str::snake(singularize($pathElement->elementName()));
+        $name = Str::snake(\ICanBoogie\StaticInflector::singularize($pathElement->elementName()));
         if (array_key_exists($name, self::SPECIAL_PATH_NAMES)) {
             return self::SPECIAL_PATH_NAMES[$name]['model'];
         }
@@ -628,7 +626,7 @@ class Action
                             return;
                         case 'delete':
                             $this->type   = self::CONTEXT_TYPE_DESTROY;
-                            $this->action = 'delete'.$this->convertToMethodName(singularize($subElement->elementName()));
+                            $this->action = 'delete'.$this->convertToMethodName(\ICanBoogie\StaticInflector::singularize($subElement->elementName()));
 
                             return;
                     }

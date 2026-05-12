@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
 class Parameter
 {
@@ -10,14 +10,14 @@ class Parameter
     /** @var \TakaakiMizuno\SwaggerParser\Objects\Base */
     protected $info;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec */
     protected $spec;
 
     /**
      * Path constructor.
      *
      * @param \TakaakiMizuno\SwaggerParser\Objects\Base            $info
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
      */
     public function __construct($info, $spec)
     {

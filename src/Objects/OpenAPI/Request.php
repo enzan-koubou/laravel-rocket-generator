@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
 class Request
 {
@@ -35,16 +35,16 @@ class Request
     /** @var \TakaakiMizuno\SwaggerParser\Objects\Base */
     protected $info;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\PathElement[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\PathElement[] */
     protected $elements;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Action[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Action[] */
     protected $actions;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec */
     protected $spec;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Definition */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Definition */
     protected $response;
 
     /** @var string */
@@ -53,7 +53,7 @@ class Request
     /** @var string */
     protected $requestNamespace;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Parameter[] $parameters */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Parameter[] $parameters */
     protected $parameters = [];
 
     protected $canGenerate = true;
@@ -65,8 +65,8 @@ class Request
      * @param string                                               $method
      * @param string                                               $httpMethod
      * @param \TakaakiMizuno\SwaggerParser\Objects\Base            $info
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\Definition  $response
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\Definition  $response
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
      */
     public function __construct($controllerName, $method, $httpMethod, $info, $response, $spec)
     {
@@ -98,7 +98,7 @@ class Request
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Parameter[]
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Parameter[]
      */
     public function getParameters()
     {

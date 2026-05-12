@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
-use LaravelRocket\Generator\Validators\Error;
-use LaravelRocket\Generator\Validators\Tables\TableSchemaValidator;
+use EnzanRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Validators\Tables\TableSchemaValidator;
 use TakaakiMizuno\MWBParser\Parser;
 
 class ValidatorFromMWB extends BaseCommand
@@ -17,7 +17,7 @@ class ValidatorFromMWB extends BaseCommand
     /** @var \TakaakiMizuno\MWBParser\Elements\Table[] $tables */
     protected $tables;
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions */
+    /** @var \EnzanRocket\Generator\Objects\Definitions */
     protected $json;
 
     /**
@@ -81,7 +81,7 @@ class ValidatorFromMWB extends BaseCommand
         $validator = new TableSchemaValidator($this->config, $this->files, $this->view);
 
         /** @var bool $success */
-        /** @var \LaravelRocket\Generator\Validators\Error[] $errors */
+        /** @var \EnzanRocket\Generator\Validators\Error[] $errors */
         list($success, $errors) = $validator->validate($this->tables, $this->json);
 
         $this->output('Table Schema Validation Result');

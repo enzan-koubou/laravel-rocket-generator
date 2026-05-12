@@ -1,14 +1,14 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\Migrations;
+namespace EnzanRocket\Generator\Generators\Migrations;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Generators\BaseGenerator;
-use LaravelRocket\Generator\Objects\Column;
-use LaravelRocket\Generator\Objects\Index;
-use LaravelRocket\Generator\Services\DatabaseService;
-use LaravelRocket\Generator\Services\FileService;
+use EnzanRocket\Generator\Generators\BaseGenerator;
+use EnzanRocket\Generator\Objects\Column;
+use EnzanRocket\Generator\Objects\Index;
+use EnzanRocket\Generator\Services\DatabaseService;
+use EnzanRocket\Generator\Services\FileService;
 use TakaakiMizuno\MWBParser\Elements\Table;
 
 class MigrationFileGenerator extends BaseGenerator

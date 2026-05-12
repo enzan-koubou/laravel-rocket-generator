@@ -1,10 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators;
+namespace EnzanRocket\Generator\Generators;
 
 use Illuminate\Support\Str;
 
-use function ICanBoogie\singularize;
 
 class NameBaseGenerator extends BaseGenerator
 {
@@ -14,13 +13,13 @@ class NameBaseGenerator extends BaseGenerator
     protected $name;
 
     /**
-     * @var \LaravelRocket\Generator\Objects\Definitions
+     * @var \EnzanRocket\Generator\Objects\Definitions
      */
     protected $json;
 
     /**
      * @param string                                       $name
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return bool
      */
@@ -52,7 +51,7 @@ class NameBaseGenerator extends BaseGenerator
      */
     protected function normalizeName(string $name): string
     {
-        return ucfirst(Str::camel(singularize($name)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($name)));
     }
 
     /**

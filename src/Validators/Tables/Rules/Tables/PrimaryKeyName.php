@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\Tables\Rules\Tables;
+namespace EnzanRocket\Generator\Validators\Tables\Rules\Tables;
 
 use Illuminate\Support\Arr;
-use LaravelRocket\Generator\Validators\BaseRule;
-use LaravelRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Validators\BaseRule;
+use EnzanRocket\Generator\Validators\Error;
 
 class PrimaryKeyName extends BaseRule
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\Tables\Rules\Columns;
+namespace EnzanRocket\Generator\Validators\Tables\Rules\Columns;
 
 use Illuminate\Support\Arr;
-use LaravelRocket\Generator\Validators\BaseRule;
-use LaravelRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Validators\BaseRule;
+use EnzanRocket\Generator\Validators\Error;
 
 class AvoidDateTime extends BaseRule
 {

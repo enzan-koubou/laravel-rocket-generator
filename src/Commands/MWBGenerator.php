@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use TakaakiMizuno\MWBParser\Parser;
 
@@ -9,10 +9,10 @@ class MWBGenerator extends BaseCommand
     /** @var \TakaakiMizuno\MWBParser\Elements\Table[] $tables */
     protected $tables;
 
-    /** @var \LaravelRocket\Generator\Objects\Definitions */
+    /** @var \EnzanRocket\Generator\Objects\Definitions */
     protected $json;
 
-    /** @var \LaravelRocket\Generator\Services\DatabaseService $databaseService */
+    /** @var \EnzanRocket\Generator\Services\DatabaseService $databaseService */
     protected $databaseService;
 
     /**

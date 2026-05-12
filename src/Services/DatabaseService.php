@@ -1,6 +1,8 @@
 <?php
 
-namespace LaravelRocket\Generator\Services;
+namespace EnzanRocket\Generator\Services;
+
+use Doctrine\DBAL\DriverManager;
 
 class DatabaseService
 {
@@ -99,8 +101,6 @@ class DatabaseService
 
     /**
      * @return array|\Doctrine\DBAL\Schema\AbstractSchemaManager
-     *
-     * @throws \Doctrine\DBAL\DBALException
      */
     protected function getSchema()
     {
@@ -113,12 +113,34 @@ class DatabaseService
             return [];
         }
 
-        /** @var \Doctrine\DBAL\Platforms\AbstractPlatform $platform */
-        $platform = $this->connection->getDoctrineConnection()->getDatabasePlatform();
-        $platform->registerDoctrineTypeMapping('json', 'string');
+        $setting  = 'rocket';
+        $driver   = config('database.connections.'.$setting.'.driver');
+        $host     = config('database.connections.'.$setting.'.host');
+        $port     = config('database.connections.'.$setting.'.port');
+        $username = config('database.connections.'.$setting.'.username');
+        $password = config('database.connections.'.$setting.'.password');
+        $database = config('database.connections.'.$setting.'.database');
+        $charset  = config('database.connections.'.$setting.'.charset', 'utf8mb4');
+
+        $driverMap = [
+            'mysql'  => 'pdo_mysql',
+            'pgsql'  => 'pdo_pgsql',
+            'sqlite' => 'pdo_sqlite',
+            'sqlsrv' => 'pdo_sqlsrv',
+        ];
+
+        $dbalConnection = DriverManager::getConnection([
+            'driver'   => $driverMap[$driver ?? 'mysql'] ?? 'pdo_mysql',
+            'host'     => $host ?? '127.0.0.1',
+            'port'     => (int) ($port ?? 3306),
+            'dbname'   => $database,
+            'user'     => $username,
+            'password' => $password,
+            'charset'  => $charset,
+        ]);
 
         /* @var \Doctrine\DBAL\Schema\AbstractSchemaManager $schema */
-        $this->schema = $this->connection->getDoctrineSchemaManager();
+        $this->schema = $dbalConnection->createSchemaManager();
 
         return $this->schema;
     }

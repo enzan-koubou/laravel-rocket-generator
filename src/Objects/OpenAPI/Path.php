@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\Objects\OpenAPI;
+namespace EnzanRocket\Generator\Objects\OpenAPI;
 
 class Path
 {
@@ -12,13 +12,13 @@ class Path
 
     protected $data;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\PathElement[] */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\PathElement[] */
     protected $elements;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\Action */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\Action */
     protected $action;
 
-    /** @var \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec */
+    /** @var \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec */
     protected $spec;
 
     /**
@@ -27,7 +27,7 @@ class Path
      * @param string $path
      * @param string $method
      * @param $data
-     * @param \LaravelRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
+     * @param \EnzanRocket\Generator\Objects\OpenAPI\OpenAPISpec $spec
      */
     public function __construct($path, $method, $data, $spec)
     {
@@ -41,7 +41,7 @@ class Path
     }
 
     /**
-     * @return \LaravelRocket\Generator\Objects\OpenAPI\Action
+     * @return \EnzanRocket\Generator\Objects\OpenAPI\Action
      */
     public function getAction()
     {

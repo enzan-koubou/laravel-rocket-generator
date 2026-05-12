@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\React\CRUD;
+namespace EnzanRocket\Generator\Generators\React\CRUD;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Generators\TableBaseGenerator;
-use LaravelRocket\Generator\Objects\Table;
+use EnzanRocket\Generator\Generators\TableBaseGenerator;
+use EnzanRocket\Generator\Objects\Table;
 
 class ReactCRUDBaseGenerator extends TableBaseGenerator
 {

@@ -1,10 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\Generators\React\CRUD\Admin;
+namespace EnzanRocket\Generator\Generators\React\CRUD\Admin;
 
-use LaravelRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
+use EnzanRocket\Generator\Generators\React\CRUD\ReactCRUDBaseGenerator;
 
-use function ICanBoogie\pluralize;
 
 class InfoGenerator extends ReactCRUDBaseGenerator
 {
@@ -15,7 +14,7 @@ class InfoGenerator extends ReactCRUDBaseGenerator
     {
         $modelName = $this->getModelName();
 
-        return resource_path('assets/admin/src/views/'.pluralize($modelName).'/_info.js');
+        return resource_path('assets/admin/src/views/'.\ICanBoogie\StaticInflector::pluralize($modelName).'/_info.js');
     }
 
     /**

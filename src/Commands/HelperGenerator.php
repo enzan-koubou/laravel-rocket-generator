@@ -1,15 +1,14 @@
 <?php
 
-namespace LaravelRocket\Generator\Commands;
+namespace EnzanRocket\Generator\Commands;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\Helpers\AppConfigFileUpdater;
-use LaravelRocket\Generator\FileUpdaters\Helpers\RegisterHelperFileUpdater;
-use LaravelRocket\Generator\Generators\Helpers\FacadeGenerator;
-use LaravelRocket\Generator\Generators\Helpers\HelperInterfaceGenerator;
-use LaravelRocket\Generator\Generators\Helpers\HelperUnitTestGenerator;
+use EnzanRocket\Generator\FileUpdaters\Helpers\AppConfigFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\Helpers\RegisterHelperFileUpdater;
+use EnzanRocket\Generator\Generators\Helpers\FacadeGenerator;
+use EnzanRocket\Generator\Generators\Helpers\HelperInterfaceGenerator;
+use EnzanRocket\Generator\Generators\Helpers\HelperUnitTestGenerator;
 
-use function ICanBoogie\singularize;
 
 class HelperGenerator extends BaseCommand
 {
@@ -38,20 +37,20 @@ class HelperGenerator extends BaseCommand
             $name = substr($name, 0, strlen($name) - 6);
         }
 
-        return ucfirst(Str::camel(singularize($name)));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($name)));
     }
 
     protected function generateHelper()
     {
-        /** @var \LaravelRocket\Generator\Generators\NameBaseGenerator[] $generators */
+        /** @var \EnzanRocket\Generator\Generators\NameBaseGenerator[] $generators */
         $generators = [
-            new \LaravelRocket\Generator\Generators\Helpers\HelperGenerator($this->config, $this->files, $this->view, $this->json),
+            new \EnzanRocket\Generator\Generators\Helpers\HelperGenerator($this->config, $this->files, $this->view, $this->json),
             new HelperInterfaceGenerator($this->config, $this->files, $this->view, $this->json),
             new HelperUnitTestGenerator($this->config, $this->files, $this->view, $this->json),
             new FacadeGenerator($this->config, $this->files, $this->view, $this->json),
         ];
 
-        /** @var \LaravelRocket\Generator\FileUpdaters\NameBaseFileUpdater[] $fileUpdaters */
+        /** @var \EnzanRocket\Generator\FileUpdaters\NameBaseFileUpdater[] $fileUpdaters */
         $fileUpdaters = [
             new RegisterHelperFileUpdater($this->config, $this->files, $this->view),
             new AppConfigFileUpdater($this->config, $this->files, $this->view),

@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\APIs\Admin;
+namespace EnzanRocket\Generator\FileUpdaters\APIs\Admin;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\FileUpdaters\TableBaseFileUpdater;
+use EnzanRocket\Generator\FileUpdaters\TableBaseFileUpdater;
 
 class RouterFileUpdater extends TableBaseFileUpdater
 {

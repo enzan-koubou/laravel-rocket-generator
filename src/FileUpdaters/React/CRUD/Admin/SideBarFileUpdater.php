@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters\React\CRUD\Admin;
+namespace EnzanRocket\Generator\FileUpdaters\React\CRUD\Admin;
 
 use Illuminate\Support\Arr;
 
@@ -9,7 +9,7 @@ class SideBarFileUpdater extends ReactCRUDAdminFileUpdater
     /**
      * @param \TakaakiMizuno\MWBParser\Elements\Table      $table
      * @param \TakaakiMizuno\MWBParser\Elements\Table[]    $tables
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return bool
      */

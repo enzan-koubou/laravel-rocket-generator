@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelRocket\Generator\Validators\Tables\Rules\Columns;
+namespace EnzanRocket\Generator\Validators\Tables\Rules\Columns;
 
 use Illuminate\Support\Arr;
-use LaravelRocket\Generator\Objects\Column;
-use LaravelRocket\Generator\Validators\BaseRule;
-use LaravelRocket\Generator\Validators\Error;
+use EnzanRocket\Generator\Objects\Column;
+use EnzanRocket\Generator\Validators\BaseRule;
+use EnzanRocket\Generator\Validators\Error;
 
 class OptionDefined extends BaseRule
 {
@@ -23,7 +23,7 @@ class OptionDefined extends BaseRule
             return $this->response(new Error('No column passed.', Error::LEVEL_ERROR, 'System'));
         }
 
-        /** @var \LaravelRocket\Generator\Objects\Definitions|null */
+        /** @var \EnzanRocket\Generator\Objects\Definitions|null */
         $json = Arr::get($data, 'json', null);
         if (empty($json)) {
             return $this->response(new Error('No JSON passed.', Error::LEVEL_ERROR, 'System'));

@@ -1,11 +1,10 @@
 <?php
 
-namespace LaravelRocket\Generator\FileUpdaters;
+namespace EnzanRocket\Generator\FileUpdaters;
 
 use Illuminate\Support\Str;
-use LaravelRocket\Generator\Objects\Table;
+use EnzanRocket\Generator\Objects\Table;
 
-use function ICanBoogie\singularize;
 
 class TableBaseFileUpdater extends BaseFileUpdater
 {
@@ -27,14 +26,14 @@ class TableBaseFileUpdater extends BaseFileUpdater
     protected $tableObject;
 
     /**
-     * @var \LaravelRocket\Generator\Objects\Definitions
+     * @var \EnzanRocket\Generator\Objects\Definitions
      */
     protected $json;
 
     /**
      * @param \TakaakiMizuno\MWBParser\Elements\Table      $table
      * @param \TakaakiMizuno\MWBParser\Elements\Table[]    $tables
-     * @param \LaravelRocket\Generator\Objects\Definitions $json
+     * @param \EnzanRocket\Generator\Objects\Definitions $json
      *
      * @return bool
      */
@@ -88,7 +87,7 @@ class TableBaseFileUpdater extends BaseFileUpdater
      */
     protected function getModelName(): string
     {
-        return ucfirst(Str::camel(singularize($this->table->getName())));
+        return ucfirst(Str::camel(\ICanBoogie\StaticInflector::singularize($this->table->getName())));
     }
 
     /**
@@ -109,7 +108,7 @@ class TableBaseFileUpdater extends BaseFileUpdater
             }
             $tables[] = $foreignKey->getReferenceTableName();
         }
-        if ($table->getName() === implode('_', [singularize($tables[0]), $tables[1]]) || $table->getName() === implode('_', [singularize($tables[1]), $tables[0]])) {
+        if ($table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[0]), $tables[1]]) || $table->getName() === implode('_', [\ICanBoogie\StaticInflector::singularize($tables[1]), $tables[0]])) {
             return true;
         }
 
