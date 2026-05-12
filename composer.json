@@ -28,7 +28,7 @@
     "phpunit/phpunit": "^13.1.8",
     "laravel/framework": "^13.8.0",
     "orchestra/testbench": "^11.0",
-    "enzan-rocket/foundation": "dev-main",
+    "enzan-rocket/foundation": "^1.0.0",
     "friendsofphp/php-cs-fixer": "^3.95.1",
     "fakerphp/faker": "^1.24.1",
     "takaaki-mizuno/mwb-parser": "*"

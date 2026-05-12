@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ff5a8425fa6fc649e8fb21256293407",
+    "content-hash": "e896338abddcf5593674e27c6453f460",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -1640,7 +1640,7 @@
         },
         {
             "name": "enzan-rocket/foundation",
-            "version": "dev-main",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/enzan-koubou/laravel-rocket-foundation.git",
@@ -1665,7 +1665,6 @@
                 "mockery/mockery": "^1.6.12",
                 "phpunit/phpunit": "^13.1.8"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -11267,9 +11266,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "enzan-rocket/foundation": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
